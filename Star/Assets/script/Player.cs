@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     float xVelocity;
 
-    public Vector3 jump;
+    public Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
     int jumpCount;
     bool jumpPress;
@@ -22,11 +22,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         xVelocity = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
@@ -56,13 +60,13 @@ public class Player : MonoBehaviour
         }
         if (jumpPress && isOnGround)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce,0);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
             jumpCount--;
             jumpPress = false;
         }
         else if (jumpPress && jumpCount > 0 && !isOnGround)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce,0);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
             jumpCount--;
             jumpPress = false;
         }
@@ -78,9 +82,11 @@ public class Player : MonoBehaviour
         {
             isOnGround = true;
         }
+        animator.SetBool("InAir", false);
     }
     void OnTriggerExit(Collider other)
     {
         isOnGround = false;
+        animator.SetBool("InAir", true);
     }
 }
