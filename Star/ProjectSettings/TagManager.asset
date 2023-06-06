@@ -8,6 +8,10 @@ TagManager:
   - Ground
   - CanDown
   - Enemy
+  - Clear
+  - Stair
+  - Bullet
+  - End
   layers:
   - Default
   - TransparentFX
