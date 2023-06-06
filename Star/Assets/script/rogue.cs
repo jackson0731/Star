@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class rogue : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class rogue : MonoBehaviour
     private int one;
     private int two;
     private int three;
+
+    public bool[] CardEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -43,5 +46,10 @@ public class rogue : MonoBehaviour
             Cards[two].SetActive(true);
             Cards[three].SetActive(true);
         }
+    }
+
+    public void ChooseCard()
+    {
+        SceneManager.LoadScene("3");
     }
 }
