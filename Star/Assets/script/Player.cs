@@ -5,22 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [Header("Public Object")]
     public GameObject player;
     public GameObject body;
-    public float speed = 0.1f;
     public Animator animator;
-    float xVelocity;
+    public GameObject CanPass;
+    
 
+    [Header("Public Value")]
+    public float speed = 0.1f;
     public Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
+    public bool isOnGround;
+    
+
+    float xVelocity;    
     int jumpCount;
     bool jumpPress;
     float climbSpeed = 5f;
 
-    public bool isOnGround;
     private Rigidbody rb;
-
-    public GameObject CanPass;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,7 @@ public class Player : MonoBehaviour
     {
         xVelocity = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
+
         if (Input.GetKey("d"))
         {
             animator.SetBool("Walking", true);
@@ -58,10 +63,12 @@ public class Player : MonoBehaviour
             jumpPress = true;
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
+
         if (isOnGround)
         {
             jumpCount = 1;
         }
+
         if (jumpPress && isOnGround)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
@@ -82,6 +89,7 @@ public class Player : MonoBehaviour
         {
             isOnGround = true;
         }
+
         if (other.gameObject.CompareTag("CanDown"))
         {
             isOnGround = true;
@@ -90,10 +98,12 @@ public class Player : MonoBehaviour
                 CanPass.GetComponent<MeshCollider>().enabled = false;
             }
         }
+
         if (other.gameObject.CompareTag("Clear"))
         {
             SceneManager.LoadScene("2");
         }
+
         if (other.gameObject.CompareTag("Stair"))
         {
             isOnGround = true;
@@ -103,10 +113,12 @@ public class Player : MonoBehaviour
                 float verticalInput = Input.GetAxis("Vertical");
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
                 transform.Translate(climbMovement);
+                
                 if(gameObject.transform.position.y > other.gameObject.transform.parent.gameObject.transform.position.y)
                 {
                     CanPass.GetComponent<MeshCollider>().enabled = true;
                 }
+                
                 else
                 {
                     CanPass.GetComponent<MeshCollider>().enabled = false;
@@ -117,6 +129,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("End"))
         {
             GameObject.Find("Boss").GetComponent<Rigidbody>().useGravity = true;
+            
             if(GameObject.Find("Boss").transform.position.y <= gameObject.transform.position.y)
             {
                 SceneManager.LoadScene("4");
@@ -129,10 +142,12 @@ public class Player : MonoBehaviour
     {
         isOnGround = false;
         animator.SetBool("InAir", true);
+        
         if (other.gameObject.CompareTag("CanDown"))
         {
             CanPass.GetComponent<MeshCollider>().enabled = true;
         }
+        
         if (other.gameObject.CompareTag("Stair"))
         {
             gameObject.GetComponent<Rigidbody>().useGravity = true;
