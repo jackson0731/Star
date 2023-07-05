@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     {
         xVelocity = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
-
+        
         if (Input.GetKey("d"))
         {
             animator.SetBool("Walking", true);
