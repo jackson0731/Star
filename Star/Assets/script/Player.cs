@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
     public bool isOnGround;
-    
+    public bool isJumping;
 
     float xVelocity;    
     int jumpCount;
@@ -60,8 +60,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
-            jumpPress = true;
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            animator.SetTrigger("Jump");
         }
 
         if (isOnGround)
@@ -69,18 +68,7 @@ public class Player : MonoBehaviour
             jumpCount = 1;
         }
 
-        if (jumpPress && isOnGround)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
-            jumpCount--;
-            jumpPress = false;
-        }
-        else if (jumpPress && jumpCount > 0 && !isOnGround)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
-            jumpCount--;
-            jumpPress = false;
-        }
+        
     }
 
     void OnTriggerStay(Collider other)
@@ -141,7 +129,11 @@ public class Player : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         isOnGround = false;
-        animator.SetBool("InAir", true);
+
+        if (!jumpPress)
+        {
+            animator.SetBool("InAir", true);
+        }
         
         if (other.gameObject.CompareTag("CanDown"))
         {
@@ -153,4 +145,23 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
+    public void Jump()
+    {
+        jumpPress = true;
+        rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+
+        if (jumpPress && isOnGround)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
+            jumpCount--;
+            jumpPress = false;
+        }
+        else if (jumpPress && jumpCount > 0 && !isOnGround)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
+            jumpCount--;
+            jumpPress = false;
+        }
+    }
+
 }
