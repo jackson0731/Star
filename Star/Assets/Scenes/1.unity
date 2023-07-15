@@ -2430,6 +2430,10 @@ PrefabInstance:
       propertyPath: CanPass
       value: 
       objectReference: {fileID: 1210369128}
+    - target: {fileID: 545516630297469169, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 545516630297469182, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: slider
       value: 

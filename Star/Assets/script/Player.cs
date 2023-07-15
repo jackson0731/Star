@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public bool isJumping;
 
     float xVelocity;    
-    int jumpCount;
+    public int jumpCount;
     bool jumpPress;
     float climbSpeed = 5f;
 
@@ -58,17 +58,24 @@ public class Player : MonoBehaviour
             animator.SetBool("Walking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
         {
             animator.SetTrigger("Jump");
+            jumpCount--;
         }
-
-        if (isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !isOnGround)
         {
-            jumpCount = 1;
+            animator.SetTrigger("Jump");
+            jumpCount--;
         }
+    }
 
-        
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jumpCount = 2;
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -153,13 +160,11 @@ public class Player : MonoBehaviour
         if (jumpPress && isOnGround)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
-            jumpCount--;
             jumpPress = false;
         }
-        else if (jumpPress && jumpCount > 0 && !isOnGround)
+        else if (jumpPress && jumpCount >= 0 && !isOnGround)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
-            jumpCount--;
             jumpPress = false;
         }
     }
