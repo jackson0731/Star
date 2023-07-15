@@ -17,11 +17,10 @@ public class Player : MonoBehaviour
     public Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
     public bool isOnGround;
-    public bool isJumping;
-
-    float xVelocity;    
     public int jumpCount;
-    bool jumpPress;
+    public bool jumpPress;
+
+    float xVelocity;
     float climbSpeed = 5f;
 
     private Rigidbody rb;
@@ -60,12 +59,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
         {
-            animator.SetTrigger("Jump");
+            animator.SetTrigger("1stJump");
+            animator.SetBool("Jumping", true);
             jumpCount--;
         }
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !isOnGround)
         {
-            animator.SetTrigger("Jump");
+            animator.SetTrigger("2ndJump");
+            animator.SetBool("Jumping", true);
             jumpCount--;
         }
     }
@@ -130,7 +131,8 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene("4");
             }
         }
-        
+
+        animator.SetBool("Jumping", false);
         animator.SetBool("InAir", false);
     }
     void OnTriggerExit(Collider other)
