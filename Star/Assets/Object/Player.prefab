@@ -64,37 +64,6 @@ Transform:
   m_Father: {fileID: 7327001050321054075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &545516630613385753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 545516630613385754}
-  m_Layer: 7
-  m_Name: GunSpot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &545516630613385754
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545516630613385753}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.267, z: 0.14300004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6941222260356877}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554652409453223455
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +197,6 @@ Transform:
   - {fileID: 7421289890728243056}
   - {fileID: 1008426757386663858}
   - {fileID: 5496920205322672025}
-  - {fileID: 545516630613385754}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -317,7 +285,8 @@ MonoBehaviour:
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
   isOnGround: 0
-  isJumping: 0
+  jumpCount: 0
+  jumpPress: 0
 --- !u!1 &1176121849861775469
 GameObject:
   m_ObjectHideFlags: 0

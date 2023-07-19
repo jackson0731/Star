@@ -19,8 +19,6 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        transform.position = GunSpot.transform.position;
-        transform.rotation = GunSpot.transform.rotation;
         if (Input.GetKeyDown("f"))
         {
             Shoot();
