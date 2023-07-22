@@ -63,7 +63,8 @@ public class FieldOfView : MonoBehaviour
 
     void Update()
     {
-        if(canSeePlayer == true || justout == true)
+        Vector3 playerPosition = new Vector3(playerRef.transform.position.x, transform.position.y, 0);
+        if (canSeePlayer == true || justout == true)
         {
             if(playerRef.transform.position.x > transform.position.x)
             {
@@ -73,12 +74,12 @@ public class FieldOfView : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, -90, 0);
             }
-            transform.position = Vector3.MoveTowards(transform.position, playerRef.transform.position, 1f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
         }
         if(canSeePlayer == false && justout == true)
         {
             lostPlayer -= Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, playerRef.transform.position, 1f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
             if (lostPlayer <= 0f)
             {
                 lostPlayer = 0.5f;
