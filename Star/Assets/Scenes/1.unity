@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046702951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050d7150696f5da4ebecefaeb15ee816, type: 3}
   m_Name: 
@@ -2668,6 +2668,7 @@ MonoBehaviour:
   attackCD: 0.5
   attackSpeed: 0.2
   noCombo: 1
+  ani: {fileID: 0}
 --- !u!1001 &545516631121028792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2739,9 +2740,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1805447254772788502, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6266906034487389559, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 4835d71f10359724992e240b06155fe0, type: 3}
+    - target: {fileID: 6266906034487389559, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}

@@ -9,8 +9,7 @@ public class Gun : MonoBehaviour
     public Transform firePoint; // 子彈發射的起點
     public float bulletForce = 20f;
     public GameObject GunSpot;
-
-    private Vector3 mousePos;
+    
 
     void Start()
     {
@@ -19,7 +18,13 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("f"))
+        Fire();
+    }
+
+    //Gun
+    void Fire()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
 
