@@ -13,7 +13,7 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponent<Animator>();
+        ani = GameObject.Find("Player").GetComponent<Animator>();
     }
 
     // Update is called once per frame
