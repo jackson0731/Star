@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public GameObject body;
     public Animator animator;
     public GameObject CanPass;
-    
+    public Rigidbody rb;
+
 
     [Header("Public Value")]
     public float speed = 0.1f;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     float xVelocity;
     float climbSpeed = 5f;
 
-    private Rigidbody rb;
+    
 
     // Start is called before the first frame update
     void Start()

@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7029934828211852729}
   - component: {fileID: 3099419368478329879}
+  - component: {fileID: 7213049369264057419}
   m_Layer: 0
   m_Name: DpSword
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +136,20 @@ MonoBehaviour:
   attackSpeed: 0.5
   noCombo: 1.5
   ani: {fileID: 0}
+--- !u!136 &7213049369264057419
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693424518291164931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 4.380446
+  m_Height: 76.74234
+  m_Direction: 0
+  m_Center: {x: -52.260815, y: -0.31258315, z: 0}
 --- !u!1 &9178543976545568057
 GameObject:
   m_ObjectHideFlags: 0
