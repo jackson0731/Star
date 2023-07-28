@@ -9,12 +9,17 @@ public class Sword : MonoBehaviour
     public float noCombo = 1.5f;
     public Animator ani;
     public Player Player;
+    public AniEvent AE;
+    [SerializeField] private Collider AtkCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         ani = GameObject.Find("Player").GetComponent<Animator>();
         Player = GameObject.Find("Player").GetComponent<Player>();
+        AE = GameObject.Find("Player").GetComponent<AniEvent>();
+
+        AtkCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,17 +28,23 @@ public class Sword : MonoBehaviour
         attackCD -= Time.deltaTime;
         noCombo -= Time.deltaTime;
 
+        Atk();
+        HitBoxSwitch();
+    }
+
+    void Atk()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 0 && attackCD <= 0)
         {
             //第一段攻擊
             attackCount++;
             noCombo = 0.5f;
             Player.speed = 1.5f;
-            
+
             ani.SetInteger("Attack", 1);
-            
+
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 1 && noCombo >=0)
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 1 && noCombo >= 0)
         {
             //第二段攻擊
             attackCount++;
@@ -44,18 +55,30 @@ public class Sword : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 2 && noCombo >= 0)
         {
             //第三段攻擊
-            attackCD = 1.5f;
+            attackCD = 2f;
             noCombo = 1.5f;
             attackCount = 0;
 
             ani.SetInteger("Attack", 3);
 
         }
-        else if(noCombo < 0)
+        else if (noCombo < 0)
         {
             attackCount = 0;
             Player.speed = 5f;
             ani.SetInteger("Attack", 0);
+        }
+    }
+
+    void HitBoxSwitch()
+    {
+        if (AE.IsAtk == true)
+        {
+            AtkCollider.enabled = true;
+        }
+        else if (AE.IsAtk == false)
+        {
+            AtkCollider.enabled = false;
         }
     }
 }

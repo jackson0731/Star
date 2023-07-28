@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 545516630297469182}
   - component: {fileID: 545516630297469169}
   - component: {fileID: 8031016832976823427}
+  - component: {fileID: 4027804479364119344}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -282,6 +283,7 @@ MonoBehaviour:
   body: {fileID: 816129744198364599}
   animator: {fileID: 6266906034487389559}
   CanPass: {fileID: 0}
+  rb: {fileID: 0}
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
@@ -301,6 +303,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ani: {fileID: 0}
+--- !u!114 &4027804479364119344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816129744198364599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bbb292c99350f458e414071ba217fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ani: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1176121849861775469
 GameObject:
   m_ObjectHideFlags: 0

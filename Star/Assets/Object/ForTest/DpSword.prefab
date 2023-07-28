@@ -133,9 +133,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCount: 0
   attackCD: 1.5
-  attackSpeed: 0.5
   noCombo: 1.5
   ani: {fileID: 0}
+  Player: {fileID: 0}
+  AtkCollider: {fileID: 7213049369264057419}
 --- !u!136 &7213049369264057419
 CapsuleCollider:
   m_ObjectHideFlags: 0
