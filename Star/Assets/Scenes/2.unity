@@ -591,7 +591,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: SpeedupBuff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -801,7 +801,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: ChooseOtherCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dc254e8d90d834b8059540789c300b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardEffect: 
+  Player: {fileID: 0}
 --- !u!4 &774309656
 Transform:
   m_ObjectHideFlags: 0
@@ -1643,7 +1643,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: ChooseOtherCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2226,7 +2226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476870784}
   m_Layer: 5
-  m_Name: 1
+  m_Name: Speedup
   m_TagString: card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2380,7 +2380,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: ChooseOtherCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2674,7 +2674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: ChooseOtherCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2808,7 +2808,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 774309655}
         m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseCard
+        m_MethodName: ChooseOtherCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

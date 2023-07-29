@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class rogue : MonoBehaviour
 {
+    public GameObject Player;
     private GameObject[] Cards;
     private int one;
     private int two;
     private int three;
 
-    public bool[] CardEffect;
-
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("Player");
+
         Cards = GameObject.FindGameObjectsWithTag("card");
         one = Random.Range(0, 5);
         two = Random.Range(0, 5);
@@ -48,7 +49,13 @@ public class rogue : MonoBehaviour
         }
     }
 
-    public void ChooseCard()
+    public void SpeedupBuff()
+    {
+        Player.GetComponent<Buff>().speedup = true;
+        SceneManager.LoadScene("3");
+    }
+
+    public void ChooseOtherCard()
     {
         SceneManager.LoadScene("3");
     }
