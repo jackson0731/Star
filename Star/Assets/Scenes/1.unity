@@ -351,7 +351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb876dc7dd345924098809cc31401f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OverrideControllers: []
+  OverrideControllers:
+  - {fileID: 22100000, guid: c64dc4beae1c68a4bbce8fe21960aa2c, type: 2}
+  - {fileID: 22100000, guid: 4c4fab62bbb4e0c40a142ffbf1a74188, type: 2}
   overrider: {fileID: 543450653287764418}
   anim1: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
   anim2: {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
@@ -2823,7 +2825,7 @@ PrefabInstance:
     - target: {fileID: 6266906034487389559, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
+      objectReference: {fileID: 22100000, guid: 4c4fab62bbb4e0c40a142ffbf1a74188, type: 2}
     - target: {fileID: 6598178979699196273, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0

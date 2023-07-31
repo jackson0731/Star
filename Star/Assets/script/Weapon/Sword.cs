@@ -42,7 +42,7 @@ public class Sword : MonoBehaviour
             Player.speed = 1.5f;
 
             ani.SetInteger("Attack", 1);
-
+            ani.SetBool("IsAtk", true);
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 1 && noCombo >= 0)
         {
@@ -55,18 +55,19 @@ public class Sword : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 2 && noCombo >= 0)
         {
             //²Ä¤T¬q§ðÀ»
-            attackCD = 2f;
-            noCombo = 1.5f;
+            attackCD = 1.25f;
+            noCombo = 1f;
             attackCount = 0;
 
             ani.SetInteger("Attack", 3);
-
+            ani.SetBool("IsAtk", false);
         }
         else if (noCombo < 0)
         {
             attackCount = 0;
             Player.speed = 5f;
             ani.SetInteger("Attack", 0);
+            ani.SetBool("IsAtk", false);
         }
     }
 
