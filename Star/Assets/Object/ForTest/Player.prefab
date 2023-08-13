@@ -284,6 +284,7 @@ MonoBehaviour:
   animator: {fileID: 6266906034487389559}
   CanPass: {fileID: 0}
   rb: {fileID: 0}
+  AniEvent: {fileID: 4027804479364119344}
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
@@ -317,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ani: {fileID: 0}
   Player: {fileID: 0}
+  IsAtk: 0
 --- !u!1 &1176121849861775469
 GameObject:
   m_ObjectHideFlags: 0

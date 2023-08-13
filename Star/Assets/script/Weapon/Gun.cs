@@ -9,27 +9,39 @@ public class Gun : MonoBehaviour
     public Transform firePoint; // 子彈發射的起點
     public float bulletForce = 20f;
     public GameObject GunSpot;
-    
+    public Animator ani;
+    public float noCombo;
 
     void Start()
     {
         sound = GameObject.Find("Player").GetComponent<Sound>();
+        ani = GameObject.Find("Player").GetComponent<Animator>();
     }
 
     void Update()
     {
+        noCombo -= Time.deltaTime;
+
         Fire();
     }
 
     //Gun
     void Fire()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
 
+            noCombo = 0.5f;
+            ani.SetBool("IsAtk", true);
             float amount = 5f;
             sound.addSound(amount);
+        }
+        else if (noCombo<0)
+        {
+            ani.SetBool("IsAtk", false);
         }
     }
     void Shoot()

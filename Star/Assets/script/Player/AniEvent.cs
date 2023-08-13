@@ -7,13 +7,15 @@ public class AniEvent : MonoBehaviour
     public Animator Ani;
     public Player Player;
     public bool IsAtk;
+    public bool DealDamage;
     // Start is called before the first frame update
     void Start()
     {
         Ani = GetComponent<Animator>();
         Player = GetComponent<Player>();
 
-        IsAtk = false;
+        
+        DealDamage = false;
     }
 
     // Update is called once per frame
@@ -34,11 +36,11 @@ public class AniEvent : MonoBehaviour
 
     public void AtkColiderSwitchOn()
     {
-        IsAtk = true;
+        DealDamage = true;
     }
 
     public void AtkColiderSwitchOff()
     {
-        IsAtk = false;
+        DealDamage = false;
     }
 }
