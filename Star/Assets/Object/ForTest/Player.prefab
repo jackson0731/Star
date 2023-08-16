@@ -211,7 +211,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816129744198364599}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 09ff49a578cde6a44a65eee579519d20, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b11bd45189b8ef449a2a6f04ba7cdf65, type: 3}
   m_Controller: {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -284,7 +284,6 @@ MonoBehaviour:
   animator: {fileID: 6266906034487389559}
   CanPass: {fileID: 0}
   rb: {fileID: 0}
-  AniEvent: {fileID: 4027804479364119344}
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
@@ -319,6 +318,7 @@ MonoBehaviour:
   Ani: {fileID: 0}
   Player: {fileID: 0}
   IsAtk: 0
+  DealDamage: 0
 --- !u!1 &1176121849861775469
 GameObject:
   m_ObjectHideFlags: 0
