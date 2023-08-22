@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Shoot();
+            Invoke("Shoot", 0.3f);
 
             noCombo = 0.5f;
             ani.SetBool("IsAtk", true);

@@ -1174,7 +1174,8 @@ GameObject:
   - component: {fileID: 8123819915468519878}
   - component: {fileID: 680599469226896375}
   - component: {fileID: 7020552914107360975}
-  m_Layer: 0
+  - component: {fileID: 6731143767020536540}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1247,9 +1248,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.18665247
-  m_Height: 1.7756925
+  m_Height: 1.8088253
   m_Direction: 1
-  m_Center: {x: -0.06839284, y: 0.9212997, z: 0.025894374}
+  m_Center: {x: -0.06839284, y: 0.9047333, z: 0.025894374}
 --- !u!114 &7004791805759187077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1317,33 @@ MonoBehaviour:
   Player: {fileID: 8123819915468519878}
   IsAtk: 0
   DealDamage: 0
+--- !u!114 &6731143767020536540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593151957414785765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb876dc7dd345924098809cc31401f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideControllers:
+  - {fileID: 22100000, guid: c64dc4beae1c68a4bbce8fe21960aa2c, type: 2}
+  - {fileID: 0}
+  overrider: {fileID: 680599469226896375}
+  Animators:
+  - {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
+  - {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
+  - {fileID: 9100000, guid: 1c53bccc178267644a97bfedc5106624, type: 2}
+  weaponHolderR: {fileID: 5216290018647572359}
+  weaponHolderL: {fileID: 5334614692533471337}
+  CurrentweaponR: {fileID: 0}
+  CurrentweaponL: {fileID: 0}
+  Weapon:
+  - {fileID: 7693424518291164931, guid: 7bf627550dc44c148929d9f93307a582, type: 3}
+  - {fileID: 1469537747845409215, guid: b578459503db88648aed33344edd18b7, type: 3}
 --- !u!1 &5110871809944454951
 GameObject:
   m_ObjectHideFlags: 0
