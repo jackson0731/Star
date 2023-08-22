@@ -16,9 +16,9 @@ public class FileDataHandler
         this.dataFileName = dataFileName;
     }
 
-    public GameData Load()
+    public GameData Load(string profileId)
     {
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         GameData LoadedData = null;
         if (File.Exists(fullPath))
         {
@@ -43,9 +43,9 @@ public class FileDataHandler
         return LoadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(GameData data, string profileId)
     {
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -64,5 +64,35 @@ public class FileDataHandler
         {
             Debug.LogError("Error occured when trying to save data to file" + fullPath + "\n" + e);
         }
+    }
+
+    public Dictionary<string, GameData> LoadAllProfiles()
+    {
+        Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();
+
+        IEnumerable<DirectoryInfo> dirInfos = new DirectoryInfo(dataDirPath).EnumerateDirectories();
+        foreach(DirectoryInfo dirInfo in dirInfos)
+        {
+            string profileId = dirInfo.Name;
+
+            string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogWarning("Skipping directory when loading all profiles because it does not contain data: " + profileId);
+                continue;
+            }
+
+            GameData profileData = Load(profileId);
+            if(profileData != null)
+            {
+                profileDictionary.Add(profileId, profileData);
+            }
+            else
+            {
+                Debug.LogError("Tried to load profile but something went wrong. ProfileId: " + profileId);
+            }
+        }
+
+        return profileDictionary;
     }
 }

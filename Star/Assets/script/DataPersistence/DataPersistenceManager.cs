@@ -20,6 +20,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
 
+    private string selectedProfileId = "test";
+
     public static DataPersistenceManager Instance { get; private set; }
 
     private void Awake()
@@ -59,6 +61,12 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
+    public void ChangeSelectedProfileId(string newProfileId)
+    {
+        this.selectedProfileId = newProfileId;
+        LoadGame();
+    }
+
     public void NewGame()
     {
         this.gameData = new GameData();
@@ -66,7 +74,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        this.gameData = dataHandler.Load();
+        this.gameData = dataHandler.Load(selectedProfileId);
 
         if(this.gameData == null && initiallizeDataIfNull)
         {
@@ -98,7 +106,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        dataHandler.Save(gameData);
+        dataHandler.Save(gameData, selectedProfileId);
     }
 
     private void OnApplicationQuit()
@@ -115,5 +123,10 @@ public class DataPersistenceManager : MonoBehaviour
     public bool HasGameData()
     {
         return gameData != null;
+    }
+
+    public Dictionary<string, GameData> GetAllProfilesGameData()
+    {
+        return dataHandler.LoadAllProfiles();
     }
 }
