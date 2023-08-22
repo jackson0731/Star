@@ -14,6 +14,8 @@ public class SaveSlotsMenu : Menu
 
     private SaveSlot[] saveSlots;
 
+    private bool isLoadingGame = false;
+
     private void Awake()
     {
         saveSlots = this.GetComponentsInChildren<SaveSlot>();
@@ -23,7 +25,11 @@ public class SaveSlotsMenu : Menu
     {
         DisableMenuButtons();
         DataPersistenceManager.Instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-        DataPersistenceManager.Instance.NewGame();
+
+        if (!isLoadingGame)
+        {
+            DataPersistenceManager.Instance.NewGame();
+        }
         SceneManager.LoadSceneAsync("1");
     }
 
@@ -33,18 +39,35 @@ public class SaveSlotsMenu : Menu
         this.DeactivateMenu();
     }
 
-    public void ActivateMenu()
+    public void ActivateMenu(bool isLoadingGame)
     {
         this.gameObject.SetActive(true);
 
+        this.isLoadingGame = isLoadingGame;
+
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
 
+        GameObject firstSelected = backButton.gameObject;
         foreach(SaveSlot saveSlot in saveSlots)
         {
             GameData profileData = null;
             profilesGameData.TryGetValue(saveSlot.GetProfileId(), out profileData);
             saveSlot.SetData(profileData);
+            if(profileData == null && isLoadingGame)
+            {
+                saveSlot.SetInteractable(false);
+            }
+            else
+            {
+                saveSlot.SetInteractable(true);
+                if (firstSelected.Equals(backButton.gameObject))
+                {
+                    firstSelected = saveSlot.gameObject;
+                }
+            }
         }
+
+        StartCoroutine(this.SetFirstSelected(firstSelected));
     }
 
     public void DeactivateMenu()

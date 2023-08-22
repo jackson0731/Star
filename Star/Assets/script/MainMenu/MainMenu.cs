@@ -12,18 +12,26 @@ public class MainMenu : Menu
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
+    [SerializeField] private Button loadGameButton;
 
     private void Start()
     {
         if (!DataPersistenceManager.Instance.HasGameData())
         {
             continueGameButton.interactable = false;
+            loadGameButton.interactable = false;
         }
     }
 
     public void OnNewGameClicked()
     {
-        saveSlotsMenu.ActivateMenu();
+        saveSlotsMenu.ActivateMenu(false);
+        this.DeactivateMenu();
+    }
+
+    public void OnLoadGameClicked()
+    {
+        saveSlotsMenu.ActivateMenu(true);
         this.DeactivateMenu();
     }
 
