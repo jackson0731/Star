@@ -1395,6 +1395,7 @@ MonoBehaviour:
   canSeePlayer: 0
   justout: 0
   lostPlayer: 0.5
+  stop: 1
 --- !u!1 &1268036068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1535,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1537371563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6599616321637792196, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
+  m_PrefabInstance: {fileID: 6599616322032323803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1537371564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537371563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.57072234, z: 0.39688152}
+  m_Center: {x: 2.5813607e-10, y: 0.29531687, z: 0.1}
 --- !u!1 &1544413053
 GameObject:
   m_ObjectHideFlags: 0
