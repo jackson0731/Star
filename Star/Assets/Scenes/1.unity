@@ -313,17 +313,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OverrideControllers:
   - {fileID: 22100000, guid: c64dc4beae1c68a4bbce8fe21960aa2c, type: 2}
-  - {fileID: 22100000, guid: 4c4fab62bbb4e0c40a142ffbf1a74188, type: 2}
+  - {fileID: 0}
   overrider: {fileID: 6559876848805255516}
-  anim1: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
-  anim2: {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
+  Animators:
+  - {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
+  - {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
+  - {fileID: 9100000, guid: 1c53bccc178267644a97bfedc5106624, type: 2}
   weaponHolderR: {fileID: 1749333812}
   weaponHolderL: {fileID: 725929280}
   CurrentweaponR: {fileID: 0}
   CurrentweaponL: {fileID: 0}
   Weapon:
   - {fileID: 7693424518291164931, guid: 7bf627550dc44c148929d9f93307a582, type: 3}
-  - {fileID: 6144183331018076515, guid: 12a10719b3b6c804db1dde2933210b00, type: 3}
+  - {fileID: 1469537747845409215, guid: b578459503db88648aed33344edd18b7, type: 3}
 --- !u!4 &261517340
 Transform:
   m_ObjectHideFlags: 0
@@ -519,7 +521,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &725929280 stripped
 GameObject:
@@ -1589,7 +1591,7 @@ RectTransform:
   m_Children:
   - {fileID: 1214447629}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2233,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202102273251619893, guid: c5765fd677e514e428f2f50033daa882, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1202102273251619893, guid: c5765fd677e514e428f2f50033daa882, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2306,7 +2308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6599616321637792248, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6599616321637792248, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2641,6 +2643,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1214447630}
+    - target: {fileID: 7067796149617603109, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
     - target: {fileID: 7342212450373234149, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Layer
       value: 7

@@ -8,8 +8,7 @@ namespace MonoBehaviours
     {
         [SerializeField] private AnimatorOverrideController[] OverrideControllers;
         [SerializeField] private AniOveride overrider;
-        [SerializeField] private RuntimeAnimatorController anim1;
-        [SerializeField] private RuntimeAnimatorController anim2;
+        [SerializeField] private RuntimeAnimatorController[] Animators;
 
         public GameObject weaponHolderR;
         public GameObject weaponHolderL;
@@ -33,8 +32,7 @@ namespace MonoBehaviours
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
-                overrider.Ani.runtimeAnimatorController = anim1 as RuntimeAnimatorController;
-                overrider.SetAnimations(OverrideControllers[0]);
+                overrider.Ani.runtimeAnimatorController = Animators[0] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
 
@@ -49,18 +47,17 @@ namespace MonoBehaviours
 
             if (Input.GetKeyDown(KeyCode.Keypad2))
             {
-                overrider.Ani.runtimeAnimatorController = anim2 as RuntimeAnimatorController;
+                overrider.Ani.runtimeAnimatorController = Animators[1] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
                 CurrentweaponR = Instantiate(Weapon[1], weaponHolderR.transform);
-                CurrentweaponR.transform.localPosition = new Vector3(0.05f, -0.27f, -0.06f);
-                CurrentweaponR.transform.localRotation = Quaternion.Euler(-16f, 180f, 274f);
+                CurrentweaponR.transform.localPosition = new Vector3(0.05f, -0.2f, 0.05f);
+                CurrentweaponR.transform.localRotation = Quaternion.Euler(-180f, 4f, 89f);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad3))
             {
-                overrider.Ani.runtimeAnimatorController = anim1 as RuntimeAnimatorController;
-                overrider.SetAnimations(OverrideControllers[1]);
+                overrider.Ani.runtimeAnimatorController = Animators[2] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
 
