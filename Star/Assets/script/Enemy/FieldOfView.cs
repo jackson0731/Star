@@ -18,6 +18,8 @@ public class FieldOfView : MonoBehaviour
     public bool justout;
     public float lostPlayer = 0.5f;
 
+    public bool stop = true;
+
     private void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -49,42 +51,69 @@ public class FieldOfView : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) && lostPlayer != 0)
+                {
                     canSeePlayer = true;
+                }
                 else
-                    canSeePlayer = false;
-                    justout = true;
+                {
+                    canSeePlayer = true;
+                }
             }
             else
+            {
+                justout = true;
                 canSeePlayer = false;
+            }
         }
         else if (canSeePlayer)
+        {
             canSeePlayer = false;
+        }
     }
 
     void Update()
     {
-        Vector3 playerPosition = new Vector3(playerRef.transform.position.x, transform.position.y, 0);
-        if (canSeePlayer == true || justout == true)
+        if (stop)
         {
-            if(playerRef.transform.position.x > transform.position.x)
+            Vector3 playerPosition = new Vector3(playerRef.transform.position.x, transform.position.y, 0);
+            if (canSeePlayer == true || justout == true)
             {
-                transform.rotation = Quaternion.Euler(0, 90, 0);
+                if (playerRef.transform.position.x > transform.position.x)
+                {
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                }
+                transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
             }
-            else
+            if (canSeePlayer == false && justout == true)
             {
-                transform.rotation = Quaternion.Euler(0, -90, 0);
+                lostPlayer -= Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
+                if (lostPlayer <= 0f)
+                {
+                    lostPlayer = 0.5f;
+                    justout = false;
+                }
             }
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
         }
-        if(canSeePlayer == false && justout == true)
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            lostPlayer -= Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1f * Time.deltaTime);
-            if (lostPlayer <= 0f)
-            {
-                lostPlayer = 0.5f;
-                justout = false;
-            }
+            stop = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            stop = true;
         }
     }
 }
