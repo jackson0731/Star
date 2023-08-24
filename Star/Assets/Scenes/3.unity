@@ -712,10 +712,6 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1108092344}
-    - target: {fileID: 7067796149617603109, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: CanPass
       value: 
