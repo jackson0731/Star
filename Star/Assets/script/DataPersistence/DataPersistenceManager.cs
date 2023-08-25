@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugging")]
+    [SerializeField] private bool disableDataPersistence = false;
     [SerializeField] private bool initiallizeDataIfNull = false;
+    [SerializeField] private bool overrideSelectedProfileId = false;
+    [SerializeField] private string testSelectedProfileId = "test";
 
     [Header("File Storage Config")]
 
@@ -20,7 +23,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
 
-    private string selectedProfileId = "test";
+    private string selectedProfileId = "";
 
     public static DataPersistenceManager Instance { get; private set; }
 
@@ -35,7 +38,19 @@ public class DataPersistenceManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
+        if (disableDataPersistence)
+        {
+            Debug.LogWarning("Date Persistence is currently disabled!");
+        }
+
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        if (overrideSelectedProfileId)
+        {
+            this.selectedProfileId = testSelectedProfileId;
+            Debug.LogWarning("Overrode selected profile id with test id:" + testSelectedProfileId);
+        }
     }
 
     private void OnEnable()
@@ -74,6 +89,11 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
+        if (disableDataPersistence)
+        {
+            return;
+        }
+
         this.gameData = dataHandler.Load(selectedProfileId);
 
         if(this.gameData == null && initiallizeDataIfNull)
@@ -95,7 +115,12 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
-        if(this.gameData == null)
+        if (disableDataPersistence)
+        {
+            return;
+        }
+
+        if (this.gameData == null)
         {
             Debug.LogWarning("No data found. A New Game needs to be started before data can be saved.");
             return;
@@ -105,6 +130,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
+        gameData.lastUpdated = System.DateTime.Now.ToBinary();
 
         dataHandler.Save(gameData, selectedProfileId);
     }
