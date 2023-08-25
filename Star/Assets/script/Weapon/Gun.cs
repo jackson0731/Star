@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
     public Animator ani;
     public float noCombo;
 
+    private bool CanShoot;
+
     void Start()
     {
         sound = GameObject.Find("Player").GetComponent<Sound>();
@@ -28,11 +30,18 @@ public class Gun : MonoBehaviour
     //Gun
     void Fire()
     {
-        
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if(ani.GetCurrentAnimatorStateInfo(0).IsName("Falling To Landing") || ani.GetCurrentAnimatorStateInfo(0).IsName("Jumping Up") || ani.GetCurrentAnimatorStateInfo(0).IsName("2ndJump"))
         {
-            Invoke("Shoot", 0.3f);
+            CanShoot = false;
+        }
+        else
+        {
+            CanShoot = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot == true)
+        {
+            Invoke("Shoot", 0.4f);
 
             noCombo = 0.5f;
             ani.SetBool("IsAtk", true);
