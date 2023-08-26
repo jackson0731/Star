@@ -30,23 +30,21 @@ public class Gun : MonoBehaviour
     //Gun
     void Fire()
     {
-        if(ani.GetCurrentAnimatorStateInfo(0).IsName("Falling To Landing") || ani.GetCurrentAnimatorStateInfo(0).IsName("Jumping Up") || ani.GetCurrentAnimatorStateInfo(0).IsName("2ndJump"))
-        {
-            CanShoot = false;
-        }
-        else
+        if(ani.GetCurrentAnimatorStateInfo(0).IsName("PistolIdle1") || ani.GetCurrentAnimatorStateInfo(0).IsName("AimRun") || ani.GetCurrentAnimatorStateInfo(0).IsName("AimFall"))
         {
             CanShoot = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot == true)
+        else
         {
-            Invoke("Shoot", 0.4f);
+            CanShoot = false;
+        }
 
-            noCombo = 0.5f;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             ani.SetBool("IsAtk", true);
-            float amount = 5f;
-            sound.addSound(amount);
+            noCombo = 1f;
+            Invoke("Shoot", 0.2f);
+
         }
         else if (noCombo<0)
         {
@@ -55,13 +53,22 @@ public class Gun : MonoBehaviour
     }
     void Shoot()
     {
-        // 產生子彈
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        
+        if (CanShoot == true)
+        {
+            // 產生子彈
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // 取得子彈的剛體元件
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            // 取得子彈的剛體元件
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
-        // 設定子彈的發射力量
-        bulletRigidbody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+            // 設定子彈的發射力量
+            bulletRigidbody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+
+            
+            float amount = 5f;
+            sound.addSound(amount);
+        }
+        
     }
 }
