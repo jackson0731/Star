@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: -6302845047384963425}
   m_Layer: 0
   m_Name: StarBee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   canSeePlayer: 0
   justout: 0
   lostPlayer: 1
+  stop: 1
 --- !u!114 &-6302845047384963425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  atkCD: 1.7
 --- !u!1 &6599616321730163912
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ namespace MonoBehaviours
         {
             CurrentweaponR = null;
             CurrentweaponL = null;
+            overrider.Ani.runtimeAnimatorController = Animators[0] as RuntimeAnimatorController;
         }
         void Update()
         {

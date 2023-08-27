@@ -17,6 +17,7 @@ public class FieldOfView : MonoBehaviour
     public bool canSeePlayer;
     public bool justout;
     public float lostPlayer = 0.5f;
+    public float distanceToTarget;
 
     public bool stop = true;
 
@@ -48,7 +49,7 @@ public class FieldOfView : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) && lostPlayer != 0)
                 {
@@ -73,7 +74,7 @@ public class FieldOfView : MonoBehaviour
 
     void Update()
     {
-        if (stop)
+        if (distanceToTarget > 1.4f)
         {
             Vector3 playerPosition = new Vector3(playerRef.transform.position.x, transform.position.y, 0);
             if (canSeePlayer == true || justout == true)
@@ -101,19 +102,4 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            stop = false;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            stop = true;
-        }
-    }
 }

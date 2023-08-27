@@ -17,15 +17,12 @@ public class Enemy : MonoBehaviour
     {
         if(hp <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void TakeDamage()
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            hp--;
-        }
+        hp--;
     }
 }

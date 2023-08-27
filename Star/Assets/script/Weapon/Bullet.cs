@@ -16,10 +16,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnCollisionStay(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.tag == "Enemy")
         {
+            other.gameObject.GetComponent<Enemy>().TakeDamage();
             Destroy(gameObject);
         }
     }

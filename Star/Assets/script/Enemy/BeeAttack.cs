@@ -15,9 +15,14 @@ public class BeeAttack : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.GetComponent<FieldOfView>().canSeePlayer)
+        if (gameObject.GetComponent<FieldOfView>().canSeePlayer && gameObject.GetComponent<FieldOfView>().distanceToTarget >= 1.4f)
         {
             animator.SetBool("Moving", true);
+        }
+        else if (gameObject.GetComponent<FieldOfView>().canSeePlayer && gameObject.GetComponent<FieldOfView>().distanceToTarget < 1.4f)
+        {
+            animator.SetBool("Moving", false);
+            Attack();
         }
         else
         {
@@ -25,28 +30,15 @@ public class BeeAttack : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void Attack()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (atkCD < 0)
         {
             animator.SetTrigger("CAtk");
             atkCD = 1.7f;
         }
+        atkCD -= Time.deltaTime;
     }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            animator.SetBool("Moving", false);
-            atkCD -= Time.deltaTime;
-            if (atkCD < 0)
-            {
-                atkCD = 1.7f;
-            }
-            if(atkCD == 1.7f)
-            {
-                animator.SetTrigger("CAtk");
-            }
-        }
-    }
+
+   
 }
