@@ -7,6 +7,7 @@ public class Sword : MonoBehaviour
     public int attackCount = 0;
     public float attackCD = 1.5f;
     public float noCombo = 1.5f;
+    [SerializeField] private bool HasDealDamage;
     public Animator ani;
     public Player Player;
     public AniEvent AE;
@@ -20,6 +21,7 @@ public class Sword : MonoBehaviour
         AE = GameObject.Find("Player").GetComponent<AniEvent>();
 
         AtkCollider.enabled = false;
+        HasDealDamage = false;
     }
 
     // Update is called once per frame
@@ -71,15 +73,27 @@ public class Sword : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            HasDealDamage = true;
+            other.gameObject.GetComponent<Enemy>().TakeDamage();
+            
+        }
+
+    }
+
     void HitBoxSwitch()
     {
-        if (AE.DealDamage == true)
+        if (AE.CanDealDamage == true)
         {
             AtkCollider.enabled = true;
         }
-        else if (AE.DealDamage == false)
+        else if (AE.CanDealDamage == false)
         {
             AtkCollider.enabled = false;
+            HasDealDamage = false;
         }
     }
 }
