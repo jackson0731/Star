@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3431794333396453142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65345573096863508}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &65345573096863508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431794333396453142}
+  m_LocalRotation: {x: -0, y: 0.0008779765, z: -0, w: 0.99999964}
+  m_LocalPosition: {x: 0, y: 0.36700007, z: 0.3523}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6599616321637792248}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0.101, z: 0}
 --- !u!1 &6599616321514044567
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +132,7 @@ Transform:
   - {fileID: 6599616321782473592}
   - {fileID: 6599616321894691794}
   - {fileID: 6002028340790872505}
+  - {fileID: 65345573096863508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -94.286, z: 0}
@@ -156,16 +188,16 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
-  radius: 5
+    m_Bits: 8
+  radius: 15
   angle: 100
   canSeePlayer: 0
-  justout: 0
-  lostPlayer: 1
+  HasRoll: 0
+  lostChase: 1.5
+  lostPlayer: 1.5
   distanceToTarget: 0
   ActState: 0
   RState: 0
-  HasRoll: 0
   rangeChecks: []
 --- !u!114 &-6302845047384963425
 MonoBehaviour:
@@ -180,7 +212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  atkCD: 1.7
+  firePoint: {fileID: 65345573096863508}
+  FireBall: {fileID: 4296625924960749694, guid: f59326dd08b97604bab23670c6087daf, type: 3}
+  atkCD: 0.5
+  ChargeTime: 2
   FOV: {fileID: 6599616321637792251}
 --- !u!65 &5515820846253272947
 BoxCollider:

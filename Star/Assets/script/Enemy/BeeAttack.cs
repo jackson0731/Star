@@ -5,6 +5,8 @@ using UnityEngine;
 public class BeeAttack : MonoBehaviour
 {
     public Animator animator;
+    public Transform firePoint;
+    public GameObject FireBall;
 
     [SerializeField]private float atkCD;
     [SerializeField]private float ChargeTime;
@@ -73,6 +75,7 @@ public class BeeAttack : MonoBehaviour
                 animator.SetBool("Charging", false);
                 animator.SetTrigger("Fire");
                 
+                Shoot();
             }
         }
 
@@ -86,6 +89,16 @@ public class BeeAttack : MonoBehaviour
             atkCD = 1.7f;
         }
         atkCD -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(FireBall, firePoint.position, firePoint.rotation);
+        
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        
+        bulletRigidbody.AddForce(firePoint.forward * 20, ForceMode.Impulse);
+        
     }
 
     public void ResetState()

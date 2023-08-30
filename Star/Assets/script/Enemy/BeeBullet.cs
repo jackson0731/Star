@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BeeBullet : MonoBehaviour
 {
+
     float life = 2;
 
     void Awake()
@@ -18,9 +19,9 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage();
+            //other.gameObject.GetComponent<Enemy>().TakeDamage();
             Destroy(gameObject);
         }
 
