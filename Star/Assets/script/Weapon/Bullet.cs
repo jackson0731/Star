@@ -23,5 +23,11 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage();
             Destroy(gameObject);
         }
+
+        if (other.tag == "Ground")
+        {
+            
+            Destroy(gameObject);
+        }
     }
 }
