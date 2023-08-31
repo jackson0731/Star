@@ -3,7 +3,62 @@ guid: 2060b4535e749b14aa55c6936b33dcec
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default_Material
+    second: {fileID: 2100000, guid: 4defdcb82b84de844929cca532165753, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black_metal
+    second: {fileID: 2100000, guid: 5ed96a48df3b2fa48a71c9e3eb84db68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gray_metal
+    second: {fileID: 2100000, guid: 0cc59291388a3c14282bf27a8db02e74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: green_metal_1
+    second: {fileID: 2100000, guid: 71349aed471826247bda8d12602ad98d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: green_metal_eyes
+    second: {fileID: 2100000, guid: 992921fcccf54054eb8a51d996225ecb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: d5fe26c5d0905894398f962e67d619de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light_green_metal
+    second: {fileID: 2100000, guid: f3e56e139d305134fb2fdd7325b59208, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: off_white_metal
+    second: {fileID: 2100000, guid: 5737e76e243dfd243b6ed88a62019ce1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orange_metal
+    second: {fileID: 2100000, guid: c3b4e31c1bf1b004d962c474a9765213, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wing
+    second: {fileID: 2100000, guid: 035960ef1f9f2ac4ca69226bcdb60f3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellow_metal
+    second: {fileID: 2100000, guid: 18911d6d98504144bb7ede5dbd14434a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
