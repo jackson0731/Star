@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
             isOnGround = true;
             if (Input.GetKey("s"))
             {
+                
                 CanPass.GetComponent<MeshCollider>().enabled = false;
             }
         }
@@ -113,11 +114,13 @@ public class Player : MonoBehaviour
                 
                 if(gameObject.transform.position.y > other.gameObject.transform.parent.gameObject.transform.position.y)
                 {
+                    
                     CanPass.GetComponent<MeshCollider>().enabled = true;
                 }
                 
                 else
                 {
+                    
                     CanPass.GetComponent<MeshCollider>().enabled = false;
                 }
             }
@@ -147,6 +150,7 @@ public class Player : MonoBehaviour
         
         if (other.gameObject.CompareTag("CanDown"))
         {
+            
             CanPass.GetComponent<MeshCollider>().enabled = true;
         }
         
