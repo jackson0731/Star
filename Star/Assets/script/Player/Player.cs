@@ -111,28 +111,30 @@ public class Player : MonoBehaviour
                 float verticalInput = Input.GetAxis("Vertical");
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
                 transform.Translate(climbMovement);
+                CanPass.GetComponent<MeshCollider>().enabled = false;
                 
-                if(gameObject.transform.position.y > other.gameObject.transform.parent.gameObject.transform.position.y)
-                {
-                    
-                    CanPass.GetComponent<MeshCollider>().enabled = true;
-                }
                 
-                else
-                {
-                    
-                    CanPass.GetComponent<MeshCollider>().enabled = false;
-                }
             }
+            else if (Input.GetKey("s"))
+            {
+
+                CanPass.GetComponent<MeshCollider>().enabled = false;
+            }
+            else
+            {
+                CanPass.GetComponent<MeshCollider>().enabled = true;
+
+            }
+
         }
 
-        if (other.gameObject.CompareTag("End"))
+        //if (other.gameObject.CompareTag("End"))
         {
-            GameObject.Find("Boss").GetComponent<Rigidbody>().useGravity = true;
+            //GameObject.Find("Boss").GetComponent<Rigidbody>().useGravity = true;
             
-            if(GameObject.Find("Boss").transform.position.y <= gameObject.transform.position.y)
+            //if(GameObject.Find("Boss").transform.position.y <= gameObject.transform.position.y)
             {
-                SceneManager.LoadScene("4");
+                //SceneManager.LoadScene("4");
             }
         }
 

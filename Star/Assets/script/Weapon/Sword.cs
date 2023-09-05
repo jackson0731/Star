@@ -75,7 +75,7 @@ public class Sword : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && !HasDealDamage)
         {
             HasDealDamage = true;
             other.gameObject.GetComponent<Enemy>().TakeDamage();

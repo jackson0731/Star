@@ -7,9 +7,14 @@ public class BeeAttack : MonoBehaviour
     public Animator animator;
     public Transform firePoint;
     public GameObject FireBall;
+    public LineRenderer Beam;
 
     [SerializeField]private float atkCD;
-    [SerializeField]private float ChargeTime;
+    [SerializeField] private float ChargeTime;
+
+    bool UseBeam;
+    float BeamRange = 5;
+
     private float LAtkTimer;
 
     public FieldOfView FOV;
@@ -27,6 +32,7 @@ public class BeeAttack : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
         LAtkTimer = ChargeTime;
+        Beam.enabled = false;
     }
 
     void Update()
@@ -74,8 +80,12 @@ public class BeeAttack : MonoBehaviour
             {
                 animator.SetBool("Charging", false);
                 animator.SetTrigger("Fire");
-                
-                Shoot();
+
+                if (Beam.enabled)
+                {
+                    Shoot();
+                }
+
             }
         }
 
@@ -93,12 +103,33 @@ public class BeeAttack : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(FireBall, firePoint.position, firePoint.rotation);
-        
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        
-        bulletRigidbody.AddForce(firePoint.forward * 20, ForceMode.Impulse);
-        
+        Beam.SetPosition(0, firePoint.position);
+
+        Vector3 Rayorigin = firePoint.position;
+        RaycastHit Hit;
+        if (Physics.Raycast(Rayorigin, firePoint.forward, out Hit))
+        {
+            
+            Beam.SetPosition(1, Hit.point);
+            //Debug.Log(Hit.collider.tag);
+        }
+        else
+        {
+            Beam.SetPosition(1, firePoint.position + (firePoint.transform.forward*7));
+            //Debug.Log("2nd");
+        }
+    }
+
+    public void BeamAtk()
+    {
+        UseBeam = true;
+        Beam.enabled = true;
+    }
+
+    public void BeamAtkEnd()
+    {
+        UseBeam = false;
+        Beam.enabled = false;
     }
 
     public void ResetState()
