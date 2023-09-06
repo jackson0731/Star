@@ -30,6 +30,8 @@ public class SaveSlotsMenu : Menu
         {
             DataPersistenceManager.Instance.NewGame();
         }
+
+        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("1F");
     }
 
@@ -67,7 +69,8 @@ public class SaveSlotsMenu : Menu
             }
         }
 
-        StartCoroutine(this.SetFirstSelected(firstSelected));
+        Button firstSelectedButton = firstSelected.GetComponent<Button>(); 
+        this.SetFirstSelected(firstSelectedButton);
     }
 
     public void DeactivateMenu()

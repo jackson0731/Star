@@ -38,6 +38,7 @@ public class MainMenu : Menu
     public void OnContinueGameClicked()
     {
         DisableMenuButtons();
+        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("1F");
     }
 
