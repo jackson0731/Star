@@ -30,7 +30,7 @@ public class SaveSlotsMenu : Menu
         {
             DataPersistenceManager.Instance.NewGame();
         }
-        SceneManager.LoadSceneAsync("1");
+        SceneManager.LoadSceneAsync("1F");
     }
 
     public void OnBackClicked()

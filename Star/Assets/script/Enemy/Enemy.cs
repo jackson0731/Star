@@ -2,22 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDataPersistence
 {
-    public int hp = 5;
+    [SerializeField] private string id;
 
-    // Start is called before the first frame update
-    void Start()
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
     {
-        
+        id = System.Guid.NewGuid().ToString();
     }
 
-    // Update is called once per frame
+    public int hp = 5;
+    public bool enemyDead = false;
+
+    public void LoadData(GameData data)
+    {
+        data.enemyLeft.TryGetValue(id, out enemyDead);
+        if (enemyDead)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    public void SaveData(GameData data)
+    {
+        if (data.enemyLeft.ContainsKey(id))
+        {
+            data.enemyLeft.Remove(id);
+        }
+        data.enemyLeft.Add(id, enemyDead);
+    }
+
     void Update()
     {
         if(hp <= 0)
         {
-            Destroy(gameObject);
+            enemyDead = true;
+            gameObject.SetActive(false);
         }
     }
 

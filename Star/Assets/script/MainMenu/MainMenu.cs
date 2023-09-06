@@ -38,7 +38,7 @@ public class MainMenu : Menu
     public void OnContinueGameClicked()
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("1");
+        SceneManager.LoadSceneAsync("1F");
     }
 
     private void DisableMenuButtons()
