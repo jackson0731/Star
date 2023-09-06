@@ -9,6 +9,9 @@ public class FieldOfView : MonoBehaviour
     public GameObject playerRef;
     public LayerMask targetMask;
     public LayerMask obstructionMask;
+    [SerializeField] private Light HeadLt;
+    [SerializeField] private Transform[] PatrolPoints;
+    [SerializeField] private int PDestination;
 
     [Header("Value")]
     public float radius;
@@ -24,10 +27,10 @@ public class FieldOfView : MonoBehaviour
 
     public ActionState ActState;
 
-    [SerializeField] private float RState;
-    
-    [SerializeField] private Collider[] rangeChecks;
-    
+    private float RState;
+    private Collider[] rangeChecks;
+    private float StayTimer = 0;
+
     //public bool stop = true;
 
     public enum ActionState
@@ -44,6 +47,7 @@ public class FieldOfView : MonoBehaviour
         //StartCoroutine(FOVRoutine());
         ActState = ActionState.Standy;
         lostPlayer = lostChase;
+        HeadLt.color = new Color(0f, 176f, 255f);
     }
 
     private IEnumerator FOVRoutine()
@@ -73,6 +77,8 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
+                    HeadLt.color = new Color(255f, 0f, 0f);
+                    lostPlayer = lostChase;
                     //Debug.Log("CanSeePlayer");
                 }
                 else
@@ -107,9 +113,53 @@ public class FieldOfView : MonoBehaviour
     {
         Vector3 playerPosition = new Vector3(playerRef.transform.position.x, transform.position.y, 0);
 
+        if (!canSeePlayer)
+        {
+            if (PDestination == 0)
+            {
+                
+                ActState = ActionState.Patrol;
+                transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[0].position, 1.5f * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, PatrolPoints[0].position) < 0.2f)
+                {
+                    ActState = ActionState.Standy;
+                    StayTimer += Time.deltaTime;
+                    
+                    if (StayTimer > 2)
+                    {
+                        PDestination = 1;
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        StayTimer = 0;
+                    }
+                    
+                }
+            }
+
+            if (PDestination == 1)
+            {
+                ActState = ActionState.Patrol;
+                transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[1].position, 1.5f * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, PatrolPoints[1].position) < 0.2f)
+                {
+                    ActState = ActionState.Standy;
+                    StayTimer += Time.deltaTime;
+
+                    if (StayTimer > 2)
+                    {
+                        PDestination = 0;
+                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        StayTimer = 0;
+                    }
+                    
+                }
+            }
+        }
+
         if(distanceToTarget > 10f && HasRoll == false && canSeePlayer)
         {
-            RState = Random.Range(1, 10);
+            RState = Random.Range(4, 10);
             HasRoll = true;
         }
         else if(distanceToTarget <= 10f && HasRoll == false && canSeePlayer)
@@ -163,12 +213,29 @@ public class FieldOfView : MonoBehaviour
         if (canSeePlayer)
         {
             lostPlayer -= Time.deltaTime;
-            if (lostPlayer < 0)
+            if (lostPlayer < 0 && ActState!=ActionState.LongRangeAttack)
             {
                 canSeePlayer = false;
                 HasRoll = false;
                 ActState = ActionState.Standy;
                 lostPlayer = lostChase;
+                HeadLt.color = new Color(0f, 176f, 255f);
+
+                if(Vector3.Distance(transform.position, PatrolPoints[0].position) < Vector3.Distance(transform.position, PatrolPoints[1].position))
+                {
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                    PDestination = 0;
+                }
+                else if((Vector3.Distance(transform.position, PatrolPoints[0].position) > Vector3.Distance(transform.position, PatrolPoints[1].position)))
+                {
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    PDestination = 1;
+                }
+                else
+                {
+                    PDestination = Random.Range(0,1);
+                }
+
             }
 
         }

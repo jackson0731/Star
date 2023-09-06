@@ -57,6 +57,6 @@ public class rogue : MonoBehaviour
 
     public void ChooseOtherCard()
     {
-        SceneManager.LoadScene("3");
+        SceneManager.LoadScene("3F");
     }
 }

@@ -6,8 +6,8 @@ public class BeeAttack : MonoBehaviour
 {
     public Animator animator;
     public Transform firePoint;
-    public GameObject FireBall;
-    public LineRenderer Beam;
+    [SerializeField] private LineRenderer Beam;
+    [SerializeField] private ParticleSystem Impact;
 
     [SerializeField]private float atkCD;
     [SerializeField] private float ChargeTime;
@@ -33,6 +33,7 @@ public class BeeAttack : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         LAtkTimer = ChargeTime;
         Beam.enabled = false;
+        Impact.Stop();
     }
 
     void Update()
@@ -59,6 +60,8 @@ public class BeeAttack : MonoBehaviour
 
         if (FOV.ActState == FieldOfView.ActionState.LongRangeAttack)
         {
+            animator.SetBool("Moving", false);
+
             if (LRAtk == LRAtkState.Start)
             {
                 animator.SetTrigger("StartCh");
@@ -78,7 +81,7 @@ public class BeeAttack : MonoBehaviour
             }
             else if (LRAtk == LRAtkState.Fire)
             {
-                animator.SetBool("Charging", false);
+                
                 animator.SetTrigger("Fire");
 
                 if (Beam.enabled)
@@ -111,6 +114,10 @@ public class BeeAttack : MonoBehaviour
         {
             
             Beam.SetPosition(1, Hit.point);
+
+            Vector3 ImpactDir = firePoint.position - Hit.point;
+            Impact.transform.position = Hit.point - ImpactDir.normalized/7;
+            Impact.transform.rotation = Quaternion.LookRotation(ImpactDir);
             //Debug.Log(Hit.collider.tag);
         }
         else
@@ -123,17 +130,28 @@ public class BeeAttack : MonoBehaviour
     public void BeamAtk()
     {
         UseBeam = true;
-        Beam.enabled = true;
+        if(Beam.enabled == false)
+        {
+            Beam.enabled = true;
+            Impact.Play();
+        }
+        
     }
 
     public void BeamAtkEnd()
     {
         UseBeam = false;
-        Beam.enabled = false;
+        if (Beam.enabled == true)
+        {
+            Beam.enabled = false;
+            Impact.Stop();
+        }
+        
     }
 
     public void ResetState()
     {
+        animator.SetBool("Charging", false);
         FOV.ActState = FieldOfView.ActionState.Standy;
         FOV.HasRoll = false;
         LRAtk = LRAtkState.Start;
