@@ -7,13 +7,13 @@ public class BeeAttack : MonoBehaviour
     public Animator animator;
     public Transform firePoint;
     [SerializeField] private LineRenderer Beam;
-    [SerializeField] private ParticleSystem Impact;
+    [SerializeField] private ParticleSystem[] Impact;
 
     [SerializeField]private float atkCD;
     [SerializeField] private float ChargeTime;
 
     bool UseBeam;
-    float BeamRange = 5;
+    
 
     private float LAtkTimer;
 
@@ -33,7 +33,7 @@ public class BeeAttack : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         LAtkTimer = ChargeTime;
         Beam.enabled = false;
-        Impact.Stop();
+        
     }
 
     void Update()
@@ -116,9 +116,9 @@ public class BeeAttack : MonoBehaviour
             Beam.SetPosition(1, Hit.point);
 
             Vector3 ImpactDir = firePoint.position - Hit.point;
-            Impact.transform.position = Hit.point - ImpactDir.normalized/7;
-            Impact.transform.rotation = Quaternion.LookRotation(ImpactDir);
-            //Debug.Log(Hit.collider.tag);
+            Impact[0].transform.position = Hit.point - ImpactDir.normalized/6f;
+            Impact[0].transform.rotation = Quaternion.LookRotation(ImpactDir);
+            //Debug.Log(ImpactDir);
         }
         else
         {
@@ -127,13 +127,19 @@ public class BeeAttack : MonoBehaviour
         }
     }
 
+    public void ChargeParticle()
+    {
+        Impact[2].Play();
+    }
+
     public void BeamAtk()
     {
         UseBeam = true;
         if(Beam.enabled == false)
         {
             Beam.enabled = true;
-            Impact.Play();
+            Impact[0].Play();
+            Impact[1].Play();
         }
         
     }
@@ -144,7 +150,9 @@ public class BeeAttack : MonoBehaviour
         if (Beam.enabled == true)
         {
             Beam.enabled = false;
-            Impact.Stop();
+            Impact[0].Stop();
+            Impact[1].Stop();
+            Impact[2].Stop();
         }
         
     }
