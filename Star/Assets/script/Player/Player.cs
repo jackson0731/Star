@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     public GameObject CanPass;
     public Rigidbody rb;
+    public GameObject spawn;
+    private string currentScene;
 
 
     [Header("Public Value")]
@@ -29,7 +31,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
         if (morePlayer != null)
         {
             Destroy(this.gameObject);
@@ -37,20 +38,39 @@ public class Player : MonoBehaviour
         }
         morePlayer = this;
         DontDestroyOnLoad(this.gameObject);
-        if (currentScene == "MainMenu")
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        spawn = GameObject.Find("Spawn");
+        currentScene = SceneManager.GetActiveScene().name;
     }
 
     void Update()
     {
         Move();
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        if (currentScene == "MainMenu")
+        {
+            Destroy(this.gameObject);
+        }
+        if(currentScene != SceneManager.GetActiveScene().name)
+        {
+            if(SceneManager.GetActiveScene().name != "2")
+            {
+                if (spawn == null)
+                {
+                    spawn = GameObject.Find("Spawn");
+                    gameObject.transform.position = spawn.transform.position;
+                }
+            }
+            currentScene = SceneManager.GetActiveScene().name;
+        }
     }
 
     private void Move()
