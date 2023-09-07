@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -24,15 +25,29 @@ public class Player : MonoBehaviour
     float xVelocity;
     float climbSpeed = 5f;
 
-    
+    public static Player morePlayer { get; private set; }
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (morePlayer != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        morePlayer = this;
+        DontDestroyOnLoad(this.gameObject);
+        if (currentScene == "MainMenu")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
