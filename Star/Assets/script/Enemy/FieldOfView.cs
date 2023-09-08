@@ -159,7 +159,7 @@ public class FieldOfView : MonoBehaviour
 
         if(distanceToTarget > 10f && HasRoll == false && canSeePlayer)
         {
-            RState = Random.Range(4, 10);
+            RState = Random.Range(1, 10);
             HasRoll = true;
         }
         else if(distanceToTarget <= 10f && HasRoll == false && canSeePlayer)

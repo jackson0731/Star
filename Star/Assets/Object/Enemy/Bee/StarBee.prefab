@@ -5132,7 +5132,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
+      scalar: 1
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -9832,7 +9832,7 @@ GameObject:
   - component: {fileID: -6302845047384963425}
   - component: {fileID: 5515820846253272947}
   - component: {fileID: 6410278264414418331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StarBee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -9892,7 +9892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  hp: 5
+  FOV: {fileID: 6599616321637792251}
+  hp: 10
   enemyDead: 0
 --- !u!114 &6599616321637792251
 MonoBehaviour:
@@ -9921,7 +9922,7 @@ MonoBehaviour:
   canSeePlayer: 0
   HasRoll: 0
   lostChase: 2
-  lostPlayer: 1.5
+  lostPlayer: 2
   distanceToTarget: 0
   ActState: 0
 --- !u!114 &-6302845047384963425
@@ -11344,8 +11345,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.25
+      scalar: 0.3
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -11721,7 +11722,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 15
+    angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -15841,13 +15842,13 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0
+  m_VelocityScale: 0.01
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -15976,8 +15977,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.24560735, b: 0.8018868, a: 1}
-      key1: {r: 0, g: 0.7228427, b: 1, a: 1}
+      key0: {r: 0, g: 0.24560735, b: 0.8018868, a: 0.78431374}
+      key1: {r: 0, g: 0.7228427, b: 1, a: 0.5882353}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

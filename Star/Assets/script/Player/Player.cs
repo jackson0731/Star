@@ -160,16 +160,6 @@ public class Player : MonoBehaviour
 
         }
 
-        //if (other.gameObject.CompareTag("End"))
-        {
-            //GameObject.Find("Boss").GetComponent<Rigidbody>().useGravity = true;
-            
-            //if(GameObject.Find("Boss").transform.position.y <= gameObject.transform.position.y)
-            {
-                //SceneManager.LoadScene("4");
-            }
-        }
-
         animator.SetBool("Jumping", false);
         animator.SetBool("InAir", false);
     }

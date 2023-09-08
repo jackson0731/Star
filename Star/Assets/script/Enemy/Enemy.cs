@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private string id;
+    [SerializeField] private FieldOfView FOV;
 
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
@@ -44,5 +45,6 @@ public class Enemy : MonoBehaviour, IDataPersistence
     public void TakeDamage()
     {
         hp--;
+        FOV.canSeePlayer = true;
     }
 }
