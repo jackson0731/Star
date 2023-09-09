@@ -78,7 +78,7 @@ public class Sword : MonoBehaviour
         if (other.tag == "Enemy" && !HasDealDamage)
         {
             HasDealDamage = true;
-            other.gameObject.GetComponent<Enemy>().TakeDamage();
+            other.gameObject.GetComponent<Enemy>().TakeDamage(1);
             
         }
 
@@ -90,7 +90,8 @@ public class Sword : MonoBehaviour
         {
             AtkCollider.enabled = true;
         }
-        else if (AE.CanDealDamage == false)
+        
+        if (AE.CanDealDamage == false)
         {
             AtkCollider.enabled = false;
             HasDealDamage = false;

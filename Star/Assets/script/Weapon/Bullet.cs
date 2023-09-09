@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage();
+            other.gameObject.GetComponent<Enemy>().TakeDamage(2);
             Instantiate(ImpactPar, transform.position, Quaternion.LookRotation(transform.forward));
             Destroy(gameObject);
         }

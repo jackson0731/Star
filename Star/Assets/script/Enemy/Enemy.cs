@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IDataPersistence
         id = System.Guid.NewGuid().ToString();
     }
 
-    public int hp = 5;
+    public float hp = 10f;
     public bool enemyDead = false;
 
     public void LoadData(GameData data)
@@ -42,9 +42,9 @@ public class Enemy : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float Damage)
     {
-        hp--;
+        hp=hp-Damage;
         FOV.canSeePlayer = true;
     }
 }

@@ -27,7 +27,7 @@ public class AniEvent : MonoBehaviour
     public void AtkMomantumStart()
     {
         Player.speed = 3.5f;
-        //Player.rb.AddForce(Player.transform.forward * 20, ForceMode.Impulse);
+        Player.rb.AddForce(Player.transform.forward * 20, ForceMode.Impulse);
     }
     public void AtkMomantumStop()
     {
@@ -42,5 +42,6 @@ public class AniEvent : MonoBehaviour
     public void AtkColiderSwitchOff()
     {
         CanDealDamage = false;
+        Debug.Log("SWOff");
     }
 }

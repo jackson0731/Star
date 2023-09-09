@@ -134,8 +134,10 @@ MonoBehaviour:
   attackCount: 0
   attackCD: 1.5
   noCombo: 1.5
+  HasDealDamage: 0
   ani: {fileID: 0}
   Player: {fileID: 0}
+  AE: {fileID: 0}
   AtkCollider: {fileID: 7213049369264057419}
 --- !u!136 &7213049369264057419
 CapsuleCollider:
@@ -148,9 +150,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 4.380446
-  m_Height: 76.74234
+  m_Height: 86.541115
   m_Direction: 0
-  m_Center: {x: -52.260815, y: -0.31258315, z: 0}
+  m_Center: {x: -57.160206, y: -0.31258315, z: 0}
 --- !u!1 &9178543976545568057
 GameObject:
   m_ObjectHideFlags: 0
