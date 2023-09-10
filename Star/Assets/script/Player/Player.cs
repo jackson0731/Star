@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 
 public class Player : MonoBehaviour
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public GameObject spawn;
     private string currentScene;
+    private GameObject VCamera;
 
 
     [Header("Public Value")]
@@ -51,8 +53,19 @@ public class Player : MonoBehaviour
     {
         Move();
         Spawn();
+        VCameraSet();
     }
-
+    private void VCameraSet()
+    {
+        VCamera = GameObject.Find("CM vcam1");
+        if (SceneManager.GetActiveScene().name != "2")
+        {
+            if (VCamera.GetComponent<CinemachineVirtualCamera>().Follow == null)
+            {
+                VCamera.GetComponent<CinemachineVirtualCamera>().Follow = this.transform;
+            }
+        }
+    }
     private void Spawn()
     {
         if (currentScene == "MainMenu")

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Sound : MonoBehaviour
@@ -22,7 +23,15 @@ public class Sound : MonoBehaviour
 
     void Update()
     {
-        
+        string currentScene = SceneManager.GetActiveScene().name;
+        GameObject sliderObject = GameObject.Find("Player Sound");
+        if(currentScene != "2")
+        {
+            if (slider == null)
+            {
+                slider = sliderObject.GetComponent<Slider>();
+            }
+        }
         if (currentSound != 100)
         {
             if (Soundloss <= 0)
