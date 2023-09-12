@@ -43,14 +43,7 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogWarning("Date Persistence is currently disabled!");
         }
 
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-
-        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
-        if (overrideSelectedProfileId)
-        {
-            this.selectedProfileId = testSelectedProfileId;
-            Debug.LogWarning("Overrode selected profile id with test id:" + testSelectedProfileId);
-        }
+        InitializeSelectedProfileId();
     }
 
     private void OnEnable()
@@ -73,6 +66,25 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.selectedProfileId = newProfileId;
         LoadGame();
+    }
+
+    public void DeleteProfileData(string profileId)
+    {
+        dataHandler.Delete(profileId);
+        InitializeSelectedProfileId();
+        LoadGame() ;
+    }
+
+    private void InitializeSelectedProfileId()
+    {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        if (overrideSelectedProfileId)
+        {
+            this.selectedProfileId = testSelectedProfileId;
+            Debug.LogWarning("Overrode selected profile id with test id:" + testSelectedProfileId);
+        }
     }
 
     public void NewGame()
