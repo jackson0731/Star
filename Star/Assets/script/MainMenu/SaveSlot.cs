@@ -17,6 +17,8 @@ public class SaveSlot : MonoBehaviour
     [Header("Clear Data Button")]
     [SerializeField] private Button deleteButton;
 
+    public bool hasData { get; private set; } = false;
+
     private Button saveSlotButton;
 
     private void Awake()
@@ -28,12 +30,14 @@ public class SaveSlot : MonoBehaviour
     {
         if (data == null)
         {
+            hasData = false;
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
             deleteButton.gameObject.SetActive(false);
         }
         else
         {
+            hasData = true;
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
             deleteButton.gameObject.SetActive(true);
