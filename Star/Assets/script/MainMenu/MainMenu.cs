@@ -15,11 +15,17 @@ public class MainMenu : Menu
     [SerializeField] private Button loadGameButton;
     [SerializeField] private Button quitGameButton;
 
+    [Header("Color")]
+    [SerializeField] private RawImage continueGameImage;
+    [SerializeField] private RawImage loadGameImage;
+
     [Header("Be Choose")]
     [SerializeField] private GameObject newGameBeChoose;
     [SerializeField] private GameObject continueGameBeChoose;
     [SerializeField] private GameObject loadGameBeChoose;
     [SerializeField] private GameObject quitGameBeChoose;
+
+    private float newAlpha = 0.5f;
 
     private void Start()
     {
@@ -30,8 +36,14 @@ public class MainMenu : Menu
     {
         if (!DataPersistenceManager.Instance.HasGameData())
         {
+            Color currentColor = continueGameImage.color;
+            Color currentColor2 = loadGameImage.color;
             continueGameButton.interactable = false;
+            currentColor.a = newAlpha;
+            continueGameImage.color = currentColor;
             loadGameButton.interactable = false;
+            currentColor2.a = newAlpha;
+            loadGameImage.color = currentColor2;
         }
     }
 
@@ -39,12 +51,14 @@ public class MainMenu : Menu
     {
         saveSlotsMenu.ActivateMenu(false);
         this.DeactivateMenu();
+        newGameBeChoose.SetActive(false);
     }
 
     public void OnLoadGameClicked()
     {
         saveSlotsMenu.ActivateMenu(true);
         this.DeactivateMenu();
+        loadGameBeChoose.SetActive(false);
     }
 
     public void OnContinueGameClicked()
@@ -52,6 +66,7 @@ public class MainMenu : Menu
         DisableMenuButtons();
         DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("1F");
+        continueGameBeChoose.SetActive(false);
     }
 
     public void OnQuitGameClicked()
@@ -66,12 +81,18 @@ public class MainMenu : Menu
 
     public void OnPointEnterLoadGame()
     {
-        loadGameBeChoose.SetActive(true);
+        if (!loadGameButton.interactable == false)
+        {
+            loadGameBeChoose.SetActive(true);
+        }
     }
 
     public void OnPointEnterContinueGame()
     {
-        continueGameBeChoose.SetActive(true);
+        if(!continueGameButton.interactable == false)
+        {
+            continueGameBeChoose.SetActive(true);
+        }
     }
 
     public void OnPointEnterQuitGame()
