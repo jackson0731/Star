@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
         Move();
         Spawn();
         VCameraSet();
+
+        if (CanPass == null && SceneManager.GetActiveScene().name != "2")
+        {
+            CanPass = GameObject.FindGameObjectWithTag("CanDown").transform.parent.gameObject;
+        }
     }
     private void VCameraSet()
     {
@@ -145,8 +150,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        
-
         if (other.gameObject.CompareTag("Stair"))
         {
             isOnGround = true;
@@ -157,20 +160,15 @@ public class Player : MonoBehaviour
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
                 transform.Translate(climbMovement);
                 CanPass.GetComponent<MeshCollider>().enabled = false;
-                
-                
             }
             else if (Input.GetKey("s"))
             {
-
                 CanPass.GetComponent<MeshCollider>().enabled = false;
             }
             else
             {
                 CanPass.GetComponent<MeshCollider>().enabled = true;
-
             }
-
         }
 
         animator.SetBool("Jumping", false);
@@ -187,7 +185,6 @@ public class Player : MonoBehaviour
         
         if (other.gameObject.CompareTag("CanDown"))
         {
-            
             CanPass.GetComponent<MeshCollider>().enabled = true;
         }
         
