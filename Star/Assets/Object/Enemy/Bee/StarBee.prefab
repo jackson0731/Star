@@ -9893,6 +9893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   FOV: {fileID: 6599616321637792251}
+  Ani: {fileID: 6599616321637792249}
   hp: 10
   enemyDead: 0
 --- !u!114 &6599616321637792251
