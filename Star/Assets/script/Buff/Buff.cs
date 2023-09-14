@@ -6,7 +6,7 @@ public class Buff : MonoBehaviour
 {
     public bool speedup = false;
     // Update is called once per frame
-    void Update()
+    public void BuffActive()
     {
         if (speedup)
         {

@@ -31,7 +31,7 @@ namespace MonoBehaviours
 
         void AnimatorSwitch()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[0] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
@@ -46,7 +46,7 @@ namespace MonoBehaviours
                 CurrentweaponL.transform.localRotation = Quaternion.Euler(6f, 2.1f, -177f);
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad2))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[1] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
@@ -56,7 +56,7 @@ namespace MonoBehaviours
                 CurrentweaponR.transform.localRotation = Quaternion.Euler(-180f, 4f, 89f);
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad3))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[2] as RuntimeAnimatorController;
                 Destroy(CurrentweaponR);
