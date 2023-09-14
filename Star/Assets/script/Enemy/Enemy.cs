@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private string id;
     [SerializeField] private FieldOfView FOV;
+    [SerializeField] private Animator Ani;
 
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
@@ -46,5 +47,9 @@ public class Enemy : MonoBehaviour, IDataPersistence
     {
         hp=hp-Damage;
         FOV.canSeePlayer = true;
+        if (FOV.ActState != FieldOfView.ActionState.CloseCombat && FOV.ActState != FieldOfView.ActionState.LongRangeAttack)
+        {
+            Ani.SetTrigger("BeingHit");
+        }
     }
 }
