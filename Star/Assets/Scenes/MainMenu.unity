@@ -4052,6 +4052,8 @@ MonoBehaviour:
   continueGameButton: {fileID: 1320739097}
   loadGameButton: {fileID: 1410331042}
   quitGameButton: {fileID: 1209186733}
+  continueGameImage: {fileID: 1076522110}
+  loadGameImage: {fileID: 641923964}
   newGameBeChoose: {fileID: 1883486179}
   continueGameBeChoose: {fileID: 1643169852}
   loadGameBeChoose: {fileID: 781435783}
