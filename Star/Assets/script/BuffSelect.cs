@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class rogue : MonoBehaviour
+public class BuffSelect : MonoBehaviour
 {
     public GameObject Player;
     private GameObject[] Cards;
@@ -52,7 +52,7 @@ public class rogue : MonoBehaviour
     public void SpeedupBuff()
     {
         Player.GetComponent<Buff>().speedup = true;
-        SceneManager.LoadScene("3");
+        SceneManager.LoadScene("3F");
     }
 
     public void ChooseOtherCard()
