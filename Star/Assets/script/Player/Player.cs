@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public GameObject player;
     public GameObject body;
     public Animator animator;
-    public GameObject CanPass;
     public Rigidbody rb;
     public GameObject spawn;
     private string currentScene;

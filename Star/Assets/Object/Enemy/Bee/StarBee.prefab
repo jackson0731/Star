@@ -9919,12 +9919,13 @@ MonoBehaviour:
   PatrolPoints: []
   PDestination: 0
   radius: 15
-  angle: 100
+  angle: 5
   canSeePlayer: 0
   HasRoll: 0
-  lostChase: 2
-  lostPlayer: 2
+  lostChase: 1
+  lostPlayer: 1
   distanceToTarget: 0
+  BeStab: 0
   ActState: 0
 --- !u!114 &-6302845047384963425
 MonoBehaviour:
