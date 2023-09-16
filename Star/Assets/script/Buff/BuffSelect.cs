@@ -52,11 +52,11 @@ public class BuffSelect : MonoBehaviour
     public void SpeedupBuff()
     {
         Player.GetComponent<Buff>().speedup = true;
-        SceneManager.LoadScene("3F");
+        SceneManager.LoadScene(3);
     }
 
     public void ChooseOtherCard()
     {
-        SceneManager.LoadScene("3F");
+        SceneManager.LoadScene(3);
     }
 }

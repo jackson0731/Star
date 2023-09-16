@@ -24,6 +24,7 @@ public class FieldOfView : MonoBehaviour
     public float lostChase;
     public float lostPlayer;
     public float distanceToTarget;
+    public bool BeStab;
 
     public ActionState ActState;
 
@@ -105,8 +106,12 @@ public class FieldOfView : MonoBehaviour
 
     void Update()
     {
-        FieldOfViewCheck();
-        Action();
+        if(BeStab == false)
+        {
+            FieldOfViewCheck();
+            Action();
+        }
+        
     }
 
     void Action()

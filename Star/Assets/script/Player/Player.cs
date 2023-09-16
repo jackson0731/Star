@@ -54,11 +54,6 @@ public class Player : MonoBehaviour
         Move();
         Spawn();
         VCameraSet();
-
-        if (CanPass == null && SceneManager.GetActiveScene().name != "2")
-        {
-            CanPass = GameObject.FindGameObjectWithTag("CanDown").transform.parent.gameObject;
-        }
     }
     private void VCameraSet()
     {
@@ -145,10 +140,12 @@ public class Player : MonoBehaviour
             isOnGround = true;
             if (Input.GetKey("s"))
             {
-                
-                CanPass.GetComponent<MeshCollider>().enabled = false;
+
+                other.gameObject.GetComponent<StairDown>().TD = false;
             }
         }
+
+
 
         if (other.gameObject.CompareTag("Stair"))
         {
@@ -159,18 +156,23 @@ public class Player : MonoBehaviour
                 float verticalInput = Input.GetAxis("Vertical");
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
                 transform.Translate(climbMovement);
-                CanPass.GetComponent<MeshCollider>().enabled = false;
+                other.gameObject.GetComponent<Stair>().StairTD = false;
+
+
             }
             else if (Input.GetKey("s"))
             {
-                CanPass.GetComponent<MeshCollider>().enabled = false;
+                float verticalInput = Input.GetAxis("Vertical");
+                Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
+                transform.Translate(climbMovement);
+                other.gameObject.GetComponent<Stair>().StairTD = true;
             }
             else
             {
-                CanPass.GetComponent<MeshCollider>().enabled = true;
+                other.gameObject.GetComponent<Stair>().StairTD = true;
+
             }
         }
-
         animator.SetBool("Jumping", false);
         animator.SetBool("InAir", false);
     }
@@ -182,14 +184,16 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("InAir", true);
         }
-        
+
         if (other.gameObject.CompareTag("CanDown"))
         {
-            CanPass.GetComponent<MeshCollider>().enabled = true;
+
+            other.gameObject.GetComponent<StairDown>().TD = true;
         }
-        
+
         if (other.gameObject.CompareTag("Stair"))
         {
+
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
