@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
     public bool isOnGround;
     public int jumpCount;
     public bool jumpPress;
+    public int hp = 100;
+    public Slider hpSlider;
 
     float xVelocity;
     float climbSpeed = 5f;
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
         Move();
         Spawn();
         VCameraSet();
+        hpLeft();
     }
     private void VCameraSet()
     {
@@ -116,6 +120,16 @@ public class Player : MonoBehaviour
             animator.SetTrigger("2ndJump");
             animator.SetBool("Jumping", true);
             jumpCount--;
+        }
+    }
+
+    private void hpLeft()
+    {
+        hpSlider.value = hp;
+        if(hp <= 0)
+        {
+            hp = 0;
+            Debug.Log("Player is dead");
         }
     }
 

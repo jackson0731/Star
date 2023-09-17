@@ -12,7 +12,7 @@ public class BeeAttack : MonoBehaviour
     [SerializeField]private float atkCD;
     [SerializeField] private float ChargeTime;
 
-    bool UseBeam;
+    private bool UseBeam;
     
 
     private float LAtkTimer;
