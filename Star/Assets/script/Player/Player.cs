@@ -133,6 +133,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void BeingHit()
+    {
+        hp -= 1;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))

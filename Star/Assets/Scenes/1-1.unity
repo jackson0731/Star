@@ -4204,6 +4204,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: CanPass
       value: 
       objectReference: {fileID: 962255947}
