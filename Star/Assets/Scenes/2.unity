@@ -928,8 +928,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 774309655}
-        m_TargetAssemblyTypeName: rogue, Assembly-CSharp
-        m_MethodName: ChooseOtherCard
+        m_TargetAssemblyTypeName: BuffSelect, Assembly-CSharp
+        m_MethodName: JumpBuff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

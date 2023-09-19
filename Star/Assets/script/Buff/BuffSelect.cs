@@ -51,7 +51,12 @@ public class BuffSelect : MonoBehaviour
 
     public void SpeedupBuff()
     {
-        Player.GetComponent<Buff>().speedup = true;
+        Player.GetComponent<Player>().speed += 1;
+        SceneManager.LoadScene(3);
+    }
+    public void JumpBuff()
+    {
+        Player.GetComponent<Player>().jumpForce += 0.5f;
         SceneManager.LoadScene(3);
     }
 

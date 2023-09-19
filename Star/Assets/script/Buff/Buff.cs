@@ -2,15 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff : MonoBehaviour
+public abstract class Buff : ScriptableObject
 {
-    public bool speedup = false;
-    // Update is called once per frame
-    public void BuffActive()
-    {
-        if (speedup)
-        {
-            gameObject.GetComponent<Player>().speed += 2;
-        }
-    }
+    public abstract void Apply(GameObject target);
 }
