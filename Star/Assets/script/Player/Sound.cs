@@ -14,6 +14,10 @@ public class Sound : MonoBehaviour
 
     private float Soundloss = 3f;
 
+    public GameObject normalLight;
+    public GameObject redLight;
+    public Animation[] anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +48,18 @@ public class Sound : MonoBehaviour
             {
                 Soundloss -= Time.deltaTime;
             }
+            normalLight.SetActive(true);
+            redLight.SetActive(false);
+        }
+        else
+        {
+            normalLight.SetActive(false);
+            redLight.SetActive(true);
+            anim[0].Play("Flash");
+            anim[1].Play("Flash");
+            anim[2].Play("Flash");
+            anim[3].Play("Flash");
+            anim[4].Play("Flash");
         }
     }
 
