@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour, IDataPersistence
         {
             enemyDead = true;
             gameObject.SetActive(false);
+            GameObject.Find("BuffManager").GetComponent<BuffSelect>().enemyCount -= 1;
         }
     }
 

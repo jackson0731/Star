@@ -21,7 +21,7 @@ public class NextStage : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("2");
+            SceneManager.LoadScene("1-3");
             
         }
     }
