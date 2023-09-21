@@ -19,10 +19,11 @@ public class EnyAtk : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !HasDealDamage)
+        if (other.tag == "Player")
         {
-            //HasDealDamage = true;
-            other.gameObject.GetComponent<Animator>().SetTrigger("BeingHit");
+            
+            other.gameObject.GetComponent<Player>().BeingHit(1);
+            
 
         }
 

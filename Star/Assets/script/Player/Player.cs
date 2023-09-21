@@ -25,13 +25,21 @@ public class Player : MonoBehaviour
     public bool isOnGround;
     public int jumpCount;
     public bool jumpPress;
-    public int hp = 100;
+    public float hp = 100;
     public Slider hpSlider;
 
     float xVelocity;
     float climbSpeed = 5f;
+    private State CurrentState;
 
     public static Player morePlayer { get; private set; }
+
+    private enum State
+    {
+        Alive,
+        Dead
+
+    }
 
     private void Awake()
     {
@@ -75,6 +83,7 @@ public class Player : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
         if(currentScene != SceneManager.GetActiveScene().name)
         {
             if(SceneManager.GetActiveScene().name != "2")
@@ -91,36 +100,41 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        xVelocity = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
         
-        if (Input.GetKey("d"))
+        if(CurrentState == State.Alive)
         {
-            animator.SetBool("Walking", true);
-            player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-        }
-        else if (Input.GetKey("a"))
-        {
-            animator.SetBool("Walking", true);
-            player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
-        }
-        else
-        {
-            animator.SetBool("Walking", false);
-        }
+            xVelocity = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
-        {
-            animator.SetTrigger("1stJump");
-            animator.SetBool("Jumping", true);
-            jumpCount--;
+            if (Input.GetKey("d"))
+            {
+                animator.SetBool("Walking", true);
+                player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+            else if (Input.GetKey("a"))
+            {
+                animator.SetBool("Walking", true);
+                player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+            else
+            {
+                animator.SetBool("Walking", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
+            {
+                animator.SetTrigger("1stJump");
+                animator.SetBool("Jumping", true);
+                jumpCount--;
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !isOnGround)
+            {
+                animator.SetTrigger("2ndJump");
+                animator.SetBool("Jumping", true);
+                jumpCount--;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !isOnGround)
-        {
-            animator.SetTrigger("2ndJump");
-            animator.SetBool("Jumping", true);
-            jumpCount--;
-        }
+        
     }
 
     private void hpLeft()
@@ -129,13 +143,21 @@ public class Player : MonoBehaviour
         if(hp <= 0)
         {
             hp = 0;
+            CurrentState = State.Dead;
+            animator.SetBool("Dead", true);
             Debug.Log("Player is dead");
         }
     }
 
-    public void BeingHit()
+    public void BeingHit(float Damage)
     {
-        hp -= 1;
+        
+        if(CurrentState == State.Alive)
+        {
+            hp = hp - Damage;
+            animator.SetTrigger("BeingHit");
+        }
+        
     }
 
     void OnTriggerEnter(Collider other)
