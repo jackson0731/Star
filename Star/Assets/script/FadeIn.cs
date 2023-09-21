@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeIn : MonoBehaviour
 {
     public Animation[] anim;
     private bool canFadeOut;
+    public GameObject text;
 
     void Awake()
     {
@@ -17,6 +19,8 @@ public class FadeIn : MonoBehaviour
         if (canFadeOut && Input.anyKey)
         {
             anim[5].Play("Fade in");
+            text.SetActive(true);
+            SceneManager.LoadSceneAsync("1-1");
         }
     }
 
