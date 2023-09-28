@@ -8,6 +8,7 @@ public class AniEvent : MonoBehaviour
     public Player Player;
     public bool IsAtk;
     public bool CanDealDamage;
+    
     // Start is called before the first frame update
     void Start()
     {

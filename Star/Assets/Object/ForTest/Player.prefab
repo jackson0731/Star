@@ -1250,7 +1250,7 @@ CapsuleCollider:
   m_Radius: 0.18665247
   m_Height: 1.8088253
   m_Direction: 1
-  m_Center: {x: -0.06839284, y: 0.9047333, z: 0.025894374}
+  m_Center: {x: 0, y: 0.9047333, z: 0.025894374}
 --- !u!114 &7004791805759187077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,6 +1265,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
   maxSound: 100
+  normalLight: {fileID: 0}
+  redLight: {fileID: 0}
+  anim: []
 --- !u!114 &8123819915468519878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,14 +1283,16 @@ MonoBehaviour:
   player: {fileID: 4593151957414785765}
   body: {fileID: 4593151957414785765}
   animator: {fileID: 7067796149617603109}
-  CanPass: {fileID: 0}
   rb: {fileID: 6895754078028800513}
+  spawn: {fileID: 0}
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
   isOnGround: 0
   jumpCount: 0
   jumpPress: 0
+  hp: 100
+  hpSlider: {fileID: 0}
 --- !u!114 &680599469226896375
 MonoBehaviour:
   m_ObjectHideFlags: 0
