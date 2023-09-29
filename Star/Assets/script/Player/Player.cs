@@ -14,31 +14,38 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Rigidbody rb;
     public GameObject spawn;
-    private string currentScene;
-    private GameObject VCamera;
-
-
+    
     [Header("Public Value")]
     public float speed = 0.1f;
-    public Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
+    [SerializeField] Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
-    public bool isOnGround;
+    [SerializeField] bool isOnGround;
     public int jumpCount;
-    public bool jumpPress;
+    [SerializeField] bool jumpPress;
     public float hp = 100;
-    public Slider hpSlider;
+    [SerializeField] Slider hpSlider;
+    public bool StateSwitch;
 
     float xVelocity;
     float climbSpeed = 5f;
-    private State CurrentState;
+    bool HasPlayedDeadAni;
+    private string currentScene;
+    private GameObject VCamera;
 
     public static Player morePlayer { get; private set; }
 
+    private State StateType;
     private enum State
+    {
+        CanMove,
+        Animation
+    }
+
+    private LiveOrDie CurrentState;
+    private enum LiveOrDie
     {
         Alive,
         Dead
-
     }
 
     private void Awake()
@@ -66,6 +73,7 @@ public class Player : MonoBehaviour
         VCameraSet();
         hpLeft();
     }
+
     private void VCameraSet()
     {
         VCamera = GameObject.Find("CM vcam1");
@@ -101,17 +109,17 @@ public class Player : MonoBehaviour
     private void Move()
     {
         
-        if(CurrentState == State.Alive)
+        if(CurrentState == LiveOrDie.Alive && StateType == State.CanMove)
         {
             xVelocity = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
 
-            if (Input.GetKey("d"))
+            if (xVelocity == 1)
             {
                 animator.SetBool("Walking", true);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
-            else if (Input.GetKey("a"))
+            else if (xVelocity == -1)
             {
                 animator.SetBool("Walking", true);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
@@ -137,22 +145,32 @@ public class Player : MonoBehaviour
         
     }
 
+    void ChangeState()
+    {
+
+    }
+
     private void hpLeft()
     {
         hpSlider.value = hp;
         if(hp <= 0)
         {
             hp = 0;
-            CurrentState = State.Dead;
-            animator.SetBool("Dead", true);
-            Debug.Log("Player is dead");
+            CurrentState = LiveOrDie.Dead;
+            if (!HasPlayedDeadAni)
+            {
+                animator.SetTrigger("Dead");
+                HasPlayedDeadAni = true;
+            }
+            
+            //Debug.Log("Player is dead");
         }
     }
 
     public void BeingHit(float Damage)
     {
         
-        if(CurrentState == State.Alive)
+        if(CurrentState == LiveOrDie.Alive)
         {
             hp = hp - Damage;
             animator.SetTrigger("BeingHit");
@@ -166,6 +184,7 @@ public class Player : MonoBehaviour
         {
             jumpCount = 2;
         }
+
     }
 
     void OnTriggerStay(Collider other)
@@ -184,8 +203,6 @@ public class Player : MonoBehaviour
                 other.gameObject.GetComponent<StairDown>().TD = false;
             }
         }
-
-
 
         if (other.gameObject.CompareTag("Stair"))
         {
@@ -213,6 +230,17 @@ public class Player : MonoBehaviour
 
             }
         }
+
+
+        if (other.gameObject.CompareTag("Computer"))
+        {
+            
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Debug.Log("This is Computer");
+            }
+        }
+
         animator.SetBool("Jumping", false);
         animator.SetBool("InAir", false);
     }

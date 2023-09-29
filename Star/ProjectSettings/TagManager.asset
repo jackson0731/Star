@@ -12,6 +12,7 @@ TagManager:
   - Stair
   - Bullet
   - End
+  - Computer
   layers:
   - Default
   - TransparentFX

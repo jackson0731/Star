@@ -33,7 +33,7 @@ public class BeeAttack : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         LAtkTimer = ChargeTime;
         Beam.enabled = false;
-        
+        UseBeam = false;
     }
 
     void Update()
