@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         
-        if (CanShoot == true)
+        if (CanShoot == true && gameObject.GetComponent<BulletCount>().bullet != 0)
         {
             // 產生子彈
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -65,7 +65,8 @@ public class Gun : MonoBehaviour
             // 設定子彈的發射力量
             bulletRigidbody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
 
-            
+            gameObject.GetComponent<BulletCount>().bullet -= 1;
+
             float amount = 5f;
             sound.addSound(amount);
         }
