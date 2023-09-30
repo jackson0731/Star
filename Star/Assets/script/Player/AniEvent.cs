@@ -25,6 +25,10 @@ public class AniEvent : MonoBehaviour
         
     }
 
+    public void ComputerDone()
+    {
+        Player.StateSwitch = false;
+    }
     public void AtkMomantumStart()
     {
         Player.speed = 3.5f;
@@ -43,6 +47,6 @@ public class AniEvent : MonoBehaviour
     public void AtkColiderSwitchOff()
     {
         CanDealDamage = false;
-        Debug.Log("SWOff");
+        //Debug.Log("SWOff");
     }
 }

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     float xVelocity;
     float climbSpeed = 5f;
     bool HasPlayedDeadAni;
+    bool UsingComputer;
     private string currentScene;
     private GameObject VCamera;
 
@@ -145,11 +146,6 @@ public class Player : MonoBehaviour
         
     }
 
-    void ChangeState()
-    {
-
-    }
-
     private void hpLeft()
     {
         hpSlider.value = hp;
@@ -235,10 +231,55 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Computer"))
         {
             
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove)
             {
-                Debug.Log("This is Computer");
+                StateType = State.Animation;
+                StateSwitch = true;
             }
+
+            if (StateType == State.Animation && StateSwitch== true)
+            {
+                if(Vector3.Distance(transform.position, other.transform.position) > 0.1f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, other.transform.position, speed * Time.deltaTime);
+                    transform.LookAt(other.transform.position);
+                    animator.SetBool("Walking", true);
+                    
+                }
+                else
+                {
+                    animator.SetBool("Walking", false);
+                    player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    if (!UsingComputer)
+                    {
+                        animator.SetTrigger("Computer");
+                        UsingComputer = true;
+                    }
+                    //Debug.Log("This is Computer");
+                }
+                
+            }
+            if (StateType == State.Animation && StateSwitch == false)
+            {
+
+                UsingComputer = false;
+                Vector3 Return = new Vector3(transform.position.x, transform.position.y, 0);
+                if (transform.position != Return)
+                {
+                    animator.SetBool("Walking", true);
+                    transform.position = Vector3.MoveTowards(transform.position, Return, speed * Time.deltaTime);
+                    transform.LookAt(Return);
+                    
+                }
+                else
+                {
+                    animator.SetBool("Walking", false);
+                    player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    StateType = State.CanMove;
+                }
+
+            }
+
         }
 
         animator.SetBool("Jumping", false);
