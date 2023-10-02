@@ -227,6 +227,15 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove)
+            {
+                Debug.Log("ASS");
+                //StateType = State.Animation;
+                //StateSwitch = true;
+            }
+        }
 
         if (other.gameObject.CompareTag("Computer"))
         {

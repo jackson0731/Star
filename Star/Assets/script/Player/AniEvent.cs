@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class AniEvent : MonoBehaviour
 {
-    public Animator Ani;
-    public Player Player;
+    [SerializeField] Animator Ani;
+    [SerializeField] Player Player;
+    [SerializeField] Sound Sound;
     public bool IsAtk;
     public bool CanDealDamage;
     
     // Start is called before the first frame update
     void Start()
     {
-        Ani = GetComponent<Animator>();
-        Player = GetComponent<Player>();
-
-        
+               
         CanDealDamage = false;
     }
 
@@ -28,6 +26,7 @@ public class AniEvent : MonoBehaviour
     public void ComputerDone()
     {
         Player.StateSwitch = false;
+        Sound.currentSound = 0;
     }
     public void AtkMomantumStart()
     {

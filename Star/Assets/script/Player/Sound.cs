@@ -12,11 +12,8 @@ public class Sound : MonoBehaviour
 
     public float currentSound;
 
-    private float Soundloss = 3f;
-
-    public GameObject normalLight;
-    public GameObject redLight;
-    public Animation[] anim;
+    public float Soundloss = 3f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,45 +26,20 @@ public class Sound : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
         GameObject sliderObject = GameObject.Find("Player Sound");
-        if(currentScene != "2")
+        
+        if (slider == null)
         {
-            if (slider == null)
-            {
-                slider = sliderObject.GetComponent<Slider>();
-            }
+             slider = sliderObject.GetComponent<Slider>();
         }
-        if (currentSound != 100)
-        {
-            if (Soundloss <= 0)
-            {
-                currentSound -= 5f;
-                UpdateSound();
-                Soundloss = 3f;
-            }
-            else
-            {
-                Soundloss -= Time.deltaTime;
-            }
-            normalLight.SetActive(true);
-            redLight.SetActive(false);
-        }
-        else
-        {
-            normalLight.SetActive(false);
-            redLight.SetActive(true);
-            anim[0].Play("Flash");
-            anim[1].Play("Flash");
-            anim[2].Play("Flash");
-            anim[3].Play("Flash");
-            anim[4].Play("Flash");
-        }
+
+        UpdateSound();
     }
 
     public void minusSound(float amount)
     {
         currentSound -= amount;
         currentSound = Mathf.Clamp(currentSound, 0f, maxSound); // 限制能量值在0到最大值之間
-        UpdateSound();
+        
     }
 
     public void addSound(float amount)
@@ -75,10 +47,10 @@ public class Sound : MonoBehaviour
         Soundloss = 3f;
         currentSound += amount;
         currentSound = Mathf.Clamp(currentSound, 0f, maxSound); // 限制能量值在0到最大值之間
-        UpdateSound();
+        
     }
 
-    private void UpdateSound()
+    void UpdateSound()
     {
         float fillAmount = currentSound / maxSound; // 計算填充值比例
         slider.value = fillAmount;
