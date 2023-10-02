@@ -5,24 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class NextStage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject ResultWindow;
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        ResultWindow.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("1-2");
-            
+            ResultWindow.SetActive(true);
+            Time.timeScale = 0f;
         }
+    }
+
+    public void nextStage()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("1-2");
     }
 }

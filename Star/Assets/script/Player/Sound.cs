@@ -10,7 +10,7 @@ public class Sound : MonoBehaviour
     public Slider slider;
     public float maxSound = 100f;
 
-    private float currentSound;
+    public float currentSound;
 
     private float Soundloss = 3f;
 
