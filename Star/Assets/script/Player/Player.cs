@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Rigidbody rb;
     public GameObject spawn;
-    
+    [SerializeField] Slider hpSlider;
+
     [Header("Public Value")]
     public float speed = 0.1f;
     [SerializeField] Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
@@ -23,8 +24,9 @@ public class Player : MonoBehaviour
     public int jumpCount;
     [SerializeField] bool jumpPress;
     public float hp = 100;
-    [SerializeField] Slider hpSlider;
+    public bool CanAss;
     public bool StateSwitch;
+
 
     float xVelocity;
     float climbSpeed = 5f;
@@ -35,8 +37,8 @@ public class Player : MonoBehaviour
 
     public static Player morePlayer { get; private set; }
 
-    private State StateType;
-    private enum State
+    public State StateType;
+    public enum State
     {
         CanMove,
         Animation
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour
         Alive,
         Dead
     }
-
+    
     private void Awake()
     {
         if (morePlayer != null)
@@ -143,7 +145,11 @@ public class Player : MonoBehaviour
                 jumpCount--;
             }
         }
-        
+        else if(CurrentState == LiveOrDie.Alive && StateType == State.Animation)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+        }
+
     }
 
     private void hpLeft()
@@ -229,11 +235,19 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove)
+            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove && CanAss == true)
             {
                 Debug.Log("ASS");
-                //StateType = State.Animation;
-                //StateSwitch = true;
+                StateType = State.Animation;
+                StateSwitch = true;
+                animator.SetTrigger("Assing");
+
+                FieldOfView FOV = other.GetComponent<FieldOfView>();
+                Animator EnemyAni = other.GetComponent<Animator>();
+                other.transform.position = transform.position;
+                other.transform.rotation = transform.rotation; 
+                FOV.BeStab = true;
+                EnemyAni.SetTrigger("BeAssed");
             }
         }
 

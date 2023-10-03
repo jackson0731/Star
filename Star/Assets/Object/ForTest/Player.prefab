@@ -1265,9 +1265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
   maxSound: 100
-  normalLight: {fileID: 0}
-  redLight: {fileID: 0}
-  anim: []
+  currentSound: 0
+  Soundloss: 3
 --- !u!114 &8123819915468519878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,6 +1284,7 @@ MonoBehaviour:
   animator: {fileID: 7067796149617603109}
   rb: {fileID: 6895754078028800513}
   spawn: {fileID: 0}
+  hpSlider: {fileID: 0}
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
@@ -1292,7 +1292,8 @@ MonoBehaviour:
   jumpCount: 0
   jumpPress: 0
   hp: 100
-  hpSlider: {fileID: 0}
+  CanAss: 0
+  StateSwitch: 0
 --- !u!114 &680599469226896375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,6 +1321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ani: {fileID: 7067796149617603109}
   Player: {fileID: 8123819915468519878}
+  Sound: {fileID: 7004791805759187077}
   IsAtk: 0
   CanDealDamage: 0
 --- !u!114 &6731143767020536540
@@ -1342,6 +1344,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 7babfd592a22b654ea6ebf9d7323c6a4, type: 2}
   - {fileID: 9100000, guid: 62d3d5857aca67741bc0ac8259550c0c, type: 2}
   - {fileID: 9100000, guid: 1c53bccc178267644a97bfedc5106624, type: 2}
+  player: {fileID: 8123819915468519878}
   weaponHolderR: {fileID: 5216290018647572359}
   weaponHolderL: {fileID: 5334614692533471337}
   CurrentweaponR: {fileID: 0}

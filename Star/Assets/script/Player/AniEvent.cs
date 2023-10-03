@@ -23,6 +23,12 @@ public class AniEvent : MonoBehaviour
         
     }
 
+    public void AssDone()
+    {
+        Player.StateSwitch = false;
+        Player.StateType = Player.State.CanMove;
+    }
+
     public void ComputerDone()
     {
         Player.StateSwitch = false;

@@ -9,6 +9,7 @@ namespace MonoBehaviours
         [SerializeField] private AnimatorOverrideController[] OverrideControllers;
         [SerializeField] private AniOveride overrider;
         [SerializeField] private RuntimeAnimatorController[] Animators;
+        [SerializeField] Player player;
 
         public GameObject weaponHolderR;
         public GameObject weaponHolderL;
@@ -16,7 +17,6 @@ namespace MonoBehaviours
         public GameObject CurrentweaponR;
         public GameObject CurrentweaponL;
         public GameObject[] Weapon;
-
 
         void Start()
         {
@@ -34,6 +34,7 @@ namespace MonoBehaviours
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[0] as RuntimeAnimatorController;
+                player.CanAss = true;
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
 
@@ -49,6 +50,7 @@ namespace MonoBehaviours
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[1] as RuntimeAnimatorController;
+                player.CanAss = false;
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
                 CurrentweaponR = Instantiate(Weapon[1], weaponHolderR.transform);
@@ -59,6 +61,8 @@ namespace MonoBehaviours
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 overrider.Ani.runtimeAnimatorController = Animators[2] as RuntimeAnimatorController;
+                player.CanAss = true;
+
                 Destroy(CurrentweaponR);
                 Destroy(CurrentweaponL);
 

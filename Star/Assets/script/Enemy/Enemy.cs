@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour, IDataPersistence
     [SerializeField] private FieldOfView FOV;
     [SerializeField] private Animator Ani;
 
+    bool PlayDeadAni;
+
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
@@ -47,8 +49,11 @@ public class Enemy : MonoBehaviour, IDataPersistence
         if(hp <= 0)
         {
             enemyDead = true;
-            gameObject.SetActive(false);
-            GameObject.Find("BuffManager").GetComponent<BuffSelect>().enemyCount -= 1;
+            if (!PlayDeadAni)
+            {
+                PlayDeadAni = true;
+                Ani.SetTrigger("Dead");
+            }
         }
     }
 
@@ -60,5 +65,11 @@ public class Enemy : MonoBehaviour, IDataPersistence
         {
             Ani.SetTrigger("BeingHit");
         }
+    }
+
+    public void Dead()
+    {
+        gameObject.SetActive(false);
+        GameObject.Find("BuffManager").GetComponent<BuffSelect>().enemyCount -= 1;
     }
 }

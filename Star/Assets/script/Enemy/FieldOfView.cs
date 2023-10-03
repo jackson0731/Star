@@ -31,7 +31,7 @@ public class FieldOfView : MonoBehaviour
     private float RState;
     private Collider[] rangeChecks;
     private float StayTimer = 0;
-
+    [SerializeField] Enemy Enemy;
     //public bool stop = true;
 
     public enum ActionState
@@ -106,10 +106,14 @@ public class FieldOfView : MonoBehaviour
 
     void Update()
     {
-        if(BeStab == false)
+        if(Enemy.enemyDead == false)
         {
-            FieldOfViewCheck();
-            Action();
+            if (!BeStab)
+            {
+                FieldOfViewCheck();
+                Action();
+            }
+            
         }
         
     }

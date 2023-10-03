@@ -9832,6 +9832,7 @@ GameObject:
   - component: {fileID: -6302845047384963425}
   - component: {fileID: 5515820846253272947}
   - component: {fileID: 6410278264414418331}
+  - component: {fileID: 5052267539786082792}
   m_Layer: 8
   m_Name: StarBee
   m_TagString: Enemy
@@ -9927,6 +9928,7 @@ MonoBehaviour:
   distanceToTarget: 0
   BeStab: 0
   ActState: 0
+  Enemy: {fileID: 6599616321637792250}
 --- !u!114 &-6302845047384963425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9939,7 +9941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f38627de69862b439e4d29c15a2596e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 6599616321637792249}
   firePoint: {fileID: 65345573096863508}
   Beam: {fileID: 854438675035825940}
   Impact:
@@ -9978,6 +9980,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!65 &5052267539786082792
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599616321637792196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5049619, y: 0.6253003, z: 0.4021635}
+  m_Center: {x: -0.0062013166, y: 0.32555333, z: -0.3149228}
 --- !u!1 &6599616321730163912
 GameObject:
   m_ObjectHideFlags: 0
