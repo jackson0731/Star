@@ -211,6 +211,13 @@ public class Player : MonoBehaviour
             isOnGround = true;
             if (Input.GetKey("w"))
             {
+                //Animation
+                animator.SetBool("Walking", false);
+                animator.SetBool("UsingLadder", true);
+                animator.SetInteger("ClimbLadder", 1);
+                player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                //Move_And_Collider
                 gameObject.GetComponent<Rigidbody>().useGravity = false;
                 float verticalInput = Input.GetAxis("Vertical");
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
@@ -221,6 +228,13 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey("s"))
             {
+                //Animation
+                animator.SetBool("Walking", false);
+                animator.SetBool("UsingLadder", true);
+                animator.SetInteger("ClimbLadder", -1);
+                player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                //Move_And_Collider
                 float verticalInput = Input.GetAxis("Vertical");
                 Vector3 climbMovement = new Vector3(0f, verticalInput * climbSpeed * Time.deltaTime, 0f);
                 transform.Translate(climbMovement);
@@ -229,7 +243,7 @@ public class Player : MonoBehaviour
             else
             {
                 other.gameObject.GetComponent<Stair>().StairTD = true;
-
+                animator.SetInteger("ClimbLadder", 0);
             }
         }
 
@@ -319,7 +333,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("CanDown"))
         {
-
+            
             other.gameObject.GetComponent<StairDown>().TD = true;
         }
 
@@ -327,6 +341,8 @@ public class Player : MonoBehaviour
         {
             other.gameObject.GetComponent<Stair>().StairTD = true;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
+            animator.SetBool("UsingLadder", false);
+            animator.SetInteger("ClimbLadder", 0);
         }
     }
     public void Jump()
