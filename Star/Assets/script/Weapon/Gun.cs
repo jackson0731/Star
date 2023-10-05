@@ -5,12 +5,14 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     private Sound sound;
-    public GameObject bulletPrefab; // 子彈的預製體
-    public Transform firePoint; // 子彈發射的起點
-    public float bulletForce = 20f;
-    public GameObject GunSpot;
-    public Animator ani;
-    public float noCombo;
+    //[SerializeField] GameObject GunSpot;
+    [SerializeField] GameObject bulletPrefab; // 子彈的預製體
+    [SerializeField] Transform firePoint; // 子彈發射的起點
+    [SerializeField] Animator ani;
+    [SerializeField] BulletCount BC;
+
+    [SerializeField] float bulletForce = 20f;
+    [SerializeField] float noCombo;
 
     private bool CanShoot;
 
@@ -18,6 +20,7 @@ public class Gun : MonoBehaviour
     {
         sound = GameObject.Find("Player").GetComponent<Sound>();
         ani = GameObject.Find("Player").GetComponent<Animator>();
+        BC = GameObject.Find("Player").GetComponent<BulletCount>();
     }
 
     void Update()
@@ -54,7 +57,7 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         
-        if (CanShoot == true && gameObject.GetComponent<BulletCount>().bullet != 0)
+        if (CanShoot == true && BC.bullet != 0)
         {
             // 產生子彈
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -65,7 +68,7 @@ public class Gun : MonoBehaviour
             // 設定子彈的發射力量
             bulletRigidbody.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
 
-            gameObject.GetComponent<BulletCount>().bullet -= 1;
+            BC.bullet -= 1;
 
             float amount = 5f;
             sound.addSound(amount);

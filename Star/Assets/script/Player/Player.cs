@@ -325,7 +325,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Stair"))
         {
-
+            other.gameObject.GetComponent<Stair>().StairTD = true;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
