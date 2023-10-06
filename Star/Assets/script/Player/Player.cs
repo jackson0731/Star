@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
     public enum State
     {
         CanMove,
-        Animation
+        Animation,
+        Ladder
     }
 
     private LiveOrDie CurrentState;
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         
-        if(CurrentState == LiveOrDie.Alive && StateType == State.CanMove)
+        if(CurrentState == LiveOrDie.Alive && StateType != State.Animation)
         {
             xVelocity = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
@@ -120,12 +121,22 @@ public class Player : MonoBehaviour
             if (xVelocity == 1)
             {
                 animator.SetBool("Walking", true);
-                player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                
+                if(isOnGround)
+                {
+                    player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                }
+                
             }
             else if (xVelocity == -1)
             {
                 animator.SetBool("Walking", true);
-                player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+
+                if (isOnGround)
+                {
+                    player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+                }
+                
             }
             else
             {
@@ -198,7 +209,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("CanDown"))
         {
-            isOnGround = true;
+            //isOnGround = true;
             if (Input.GetKey("s"))
             {
 
@@ -208,14 +219,19 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Stair"))
         {
-            isOnGround = true;
+            //isOnGround = true;
+            
             if (Input.GetKey("w"))
             {
                 //Animation
+                
+                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetInteger("ClimbLadder", 1);
+                animator.SetFloat("ClimbLadder", 1f);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                
+                
 
                 //Move_And_Collider
                 gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -229,9 +245,10 @@ public class Player : MonoBehaviour
             else if (Input.GetKey("s"))
             {
                 //Animation
+                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetInteger("ClimbLadder", -1);
+                animator.SetFloat("ClimbLadder", 0f);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 //Move_And_Collider
@@ -242,8 +259,9 @@ public class Player : MonoBehaviour
             }
             else
             {
+                StateType = State.Ladder;
                 other.gameObject.GetComponent<Stair>().StairTD = true;
-                animator.SetInteger("ClimbLadder", 0);
+                animator.SetFloat("ClimbLadder", 0.5f);
             }
         }
 
@@ -339,10 +357,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Stair"))
         {
+            StateType = State.CanMove;
             other.gameObject.GetComponent<Stair>().StairTD = true;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             animator.SetBool("UsingLadder", false);
-            animator.SetInteger("ClimbLadder", 0);
+            animator.SetFloat("ClimbLadder", 0.5f);
         }
     }
     public void Jump()
