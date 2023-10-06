@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
     public bool CanAss;
     public bool StateSwitch;
 
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    public bool grounded;
 
     float xVelocity;
     float climbSpeed = 5f;
@@ -41,8 +45,7 @@ public class Player : MonoBehaviour
     public enum State
     {
         CanMove,
-        Animation,
-        Ladder
+        Animation
     }
 
     private LiveOrDie CurrentState;
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
         Alive,
         Dead
     }
-    
+
     private void Awake()
     {
         if (morePlayer != null)
@@ -65,6 +68,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        jumpCount = 2;
         rb = GetComponent<Rigidbody>();
         spawn = GameObject.Find("Spawn");
         currentScene = SceneManager.GetActiveScene().name;
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour
         Spawn();
         VCameraSet();
         hpLeft();
+        GroundCheck();
     }
 
     private void VCameraSet()
@@ -96,9 +101,9 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(currentScene != SceneManager.GetActiveScene().name)
+        if (currentScene != SceneManager.GetActiveScene().name)
         {
-            if(SceneManager.GetActiveScene().name != "2")
+            if (SceneManager.GetActiveScene().name != "2")
             {
                 if (spawn == null)
                 {
@@ -112,8 +117,8 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        
-        if(CurrentState == LiveOrDie.Alive && StateType != State.Animation)
+
+        if (CurrentState == LiveOrDie.Alive && StateType == State.CanMove)
         {
             xVelocity = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
@@ -121,42 +126,32 @@ public class Player : MonoBehaviour
             if (xVelocity == 1)
             {
                 animator.SetBool("Walking", true);
-                
-                if(isOnGround)
-                {
-                    player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
-                }
-                
+                player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
             else if (xVelocity == -1)
             {
                 animator.SetBool("Walking", true);
-
-                if (isOnGround)
-                {
-                    player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
-                }
-                
+                player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
             }
             else
             {
                 animator.SetBool("Walking", false);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1 && grounded)
             {
                 animator.SetTrigger("1stJump");
                 animator.SetBool("Jumping", true);
                 jumpCount--;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !isOnGround)
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && !grounded)
             {
                 animator.SetTrigger("2ndJump");
                 animator.SetBool("Jumping", true);
                 jumpCount--;
             }
         }
-        else if(CurrentState == LiveOrDie.Alive && StateType == State.Animation)
+        else if (CurrentState == LiveOrDie.Alive && StateType == State.Animation)
         {
             rb.velocity = new Vector3(0, 0, 0);
         }
@@ -166,7 +161,7 @@ public class Player : MonoBehaviour
     private void hpLeft()
     {
         hpSlider.value = hp;
-        if(hp <= 0)
+        if (hp <= 0)
         {
             hp = 0;
             CurrentState = LiveOrDie.Dead;
@@ -175,41 +170,28 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Dead");
                 HasPlayedDeadAni = true;
             }
-            
+
             //Debug.Log("Player is dead");
         }
     }
 
     public void BeingHit(float Damage)
     {
-        
-        if(CurrentState == LiveOrDie.Alive)
+
+        if (CurrentState == LiveOrDie.Alive)
         {
             hp = hp - Damage;
             animator.SetTrigger("BeingHit");
-        }
-        
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            jumpCount = 2;
         }
 
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-        }
 
         if (other.gameObject.CompareTag("CanDown"))
         {
-            //isOnGround = true;
+            grounded = true;
             if (Input.GetKey("s"))
             {
 
@@ -219,19 +201,14 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Stair"))
         {
-            //isOnGround = true;
-            
+            grounded = true;
             if (Input.GetKey("w"))
             {
                 //Animation
-                
-                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetFloat("ClimbLadder", 1f);
+                animator.SetInteger("ClimbLadder", 1);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                
-                
 
                 //Move_And_Collider
                 gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -245,10 +222,9 @@ public class Player : MonoBehaviour
             else if (Input.GetKey("s"))
             {
                 //Animation
-                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetFloat("ClimbLadder", 0f);
+                animator.SetInteger("ClimbLadder", -1);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 //Move_And_Collider
@@ -259,9 +235,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                StateType = State.Ladder;
                 other.gameObject.GetComponent<Stair>().StairTD = true;
-                animator.SetFloat("ClimbLadder", 0.5f);
+                animator.SetInteger("ClimbLadder", 0);
             }
         }
 
@@ -277,7 +252,7 @@ public class Player : MonoBehaviour
                 FieldOfView FOV = other.GetComponent<FieldOfView>();
                 Animator EnemyAni = other.GetComponent<Animator>();
                 other.transform.position = transform.position;
-                other.transform.rotation = transform.rotation; 
+                other.transform.rotation = transform.rotation;
                 FOV.BeStab = true;
                 EnemyAni.SetTrigger("BeAssed");
             }
@@ -285,21 +260,21 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Computer"))
         {
-            
+
             if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove)
             {
                 StateType = State.Animation;
                 StateSwitch = true;
             }
 
-            if (StateType == State.Animation && StateSwitch== true)
+            if (StateType == State.Animation && StateSwitch == true)
             {
-                if(Vector3.Distance(transform.position, other.transform.position) > 0.1f)
+                if (Vector3.Distance(transform.position, other.transform.position) > 0.1f)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, other.transform.position, speed * Time.deltaTime);
                     transform.LookAt(other.transform.position);
                     animator.SetBool("Walking", true);
-                    
+
                 }
                 else
                 {
@@ -312,7 +287,7 @@ public class Player : MonoBehaviour
                     }
                     //Debug.Log("This is Computer");
                 }
-                
+
             }
             if (StateType == State.Animation && StateSwitch == false)
             {
@@ -324,7 +299,7 @@ public class Player : MonoBehaviour
                     animator.SetBool("Walking", true);
                     transform.position = Vector3.MoveTowards(transform.position, Return, speed * Time.deltaTime);
                     transform.LookAt(Return);
-                    
+
                 }
                 else
                 {
@@ -342,26 +317,21 @@ public class Player : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        isOnGround = false;
 
-        if (!jumpPress)
-        {
-            animator.SetBool("InAir", true);
-        }
+
 
         if (other.gameObject.CompareTag("CanDown"))
         {
-            
+
             other.gameObject.GetComponent<StairDown>().TD = true;
         }
 
         if (other.gameObject.CompareTag("Stair"))
         {
-            StateType = State.CanMove;
             other.gameObject.GetComponent<Stair>().StairTD = true;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             animator.SetBool("UsingLadder", false);
-            animator.SetFloat("ClimbLadder", 0.5f);
+            animator.SetInteger("ClimbLadder", 0);
         }
     }
     public void Jump()
@@ -369,16 +339,35 @@ public class Player : MonoBehaviour
         jumpPress = true;
         rb.AddForce(jump * jumpForce, ForceMode.Impulse);
 
-        if (jumpPress && isOnGround)
+        if (jumpPress && grounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
             jumpPress = false;
         }
-        else if (jumpPress && jumpCount >= 0 && !isOnGround)
+        else if (jumpPress && jumpCount >= 0 && !grounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
             jumpPress = false;
         }
     }
 
+    public void GroundCheck()
+    {
+        // ground check
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
+
+        if (!jumpPress && !grounded)
+        {
+            animator.SetBool("InAir", true);
+        }
+        else
+        {
+            animator.SetBool("InAir", false);
+        }
+    }
+
+    public void JumpReset()
+    {
+        jumpCount = 2;
+    }
 }
