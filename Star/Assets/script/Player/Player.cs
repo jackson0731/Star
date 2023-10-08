@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float speed = 0.1f;
     [SerializeField] Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     public float jumpForce = 5.0f;
-    [SerializeField] bool isOnGround;
+    //[SerializeField] bool isOnGround;
     public int jumpCount;
     [SerializeField] bool jumpPress;
     public float hp = 100;
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     public bool StateSwitch;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    public bool grounded;
+    [SerializeField] float playerHeight;
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] bool grounded;
 
     float xVelocity;
     float climbSpeed = 5f;
@@ -45,7 +45,8 @@ public class Player : MonoBehaviour
     public enum State
     {
         CanMove,
-        Animation
+        Animation,
+        Ladder
     }
 
     private LiveOrDie CurrentState;
@@ -118,17 +119,17 @@ public class Player : MonoBehaviour
     private void Move()
     {
 
-        if (CurrentState == LiveOrDie.Alive && StateType == State.CanMove)
+        if (CurrentState == LiveOrDie.Alive && StateType != State.Animation)
         {
             xVelocity = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector3(xVelocity * speed, rb.velocity.y, 0);
 
-            if (xVelocity == 1)
+            if (xVelocity == 1 && StateType != State.Ladder)
             {
                 animator.SetBool("Walking", true);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
-            else if (xVelocity == -1)
+            else if (xVelocity == -1 && StateType != State.Ladder)
             {
                 animator.SetBool("Walking", true);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
@@ -205,9 +206,10 @@ public class Player : MonoBehaviour
             if (Input.GetKey("w"))
             {
                 //Animation
+                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetInteger("ClimbLadder", 1);
+                animator.SetFloat("ClimbLadder", 1);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 //Move_And_Collider
@@ -222,9 +224,10 @@ public class Player : MonoBehaviour
             else if (Input.GetKey("s"))
             {
                 //Animation
+                StateType = State.Ladder;
                 animator.SetBool("Walking", false);
                 animator.SetBool("UsingLadder", true);
-                animator.SetInteger("ClimbLadder", -1);
+                animator.SetFloat("ClimbLadder", 0);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 //Move_And_Collider
@@ -235,16 +238,17 @@ public class Player : MonoBehaviour
             }
             else
             {
+                StateType = State.Ladder;
                 other.gameObject.GetComponent<Stair>().StairTD = true;
-                animator.SetInteger("ClimbLadder", 0);
+                animator.SetFloat("ClimbLadder", 0.5f);
             }
         }
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove && CanAss == true)
+            if (Input.GetKeyDown(KeyCode.F) && StateType == State.CanMove && CanAss == true && grounded)
             {
-                Debug.Log("ASS");
+                //Debug.Log("ASS");
                 StateType = State.Animation;
                 StateSwitch = true;
                 animator.SetTrigger("Assing");
@@ -328,10 +332,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Stair"))
         {
+            StateType = State.CanMove;
             other.gameObject.GetComponent<Stair>().StairTD = true;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             animator.SetBool("UsingLadder", false);
-            animator.SetInteger("ClimbLadder", 0);
+            animator.SetFloat("ClimbLadder", 0.5f);
         }
     }
     public void Jump()
