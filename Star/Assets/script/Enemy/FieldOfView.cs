@@ -40,6 +40,7 @@ public class FieldOfView : MonoBehaviour
         Patrol,
         CloseCombat,
         LongRangeAttack,
+        Stun
     }
 
     private void Start()
@@ -186,7 +187,7 @@ public class FieldOfView : MonoBehaviour
             }
             else
             {
-                if(canSeePlayer)
+                if(canSeePlayer && ActState !=ActionState.Stun)
                 {
                     if (playerRef.transform.position.x > transform.position.x && ActState != ActionState.CloseCombat)
                     {
@@ -200,7 +201,12 @@ public class FieldOfView : MonoBehaviour
                     if (distanceToTarget > 1.4f)
                     {
                         ActState = ActionState.Patrol;
-                        transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1.5f * Time.deltaTime);
+
+                        if(ActState == ActionState.Patrol)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1.5f * Time.deltaTime);
+                        }
+                        
                         
                     }
                     else

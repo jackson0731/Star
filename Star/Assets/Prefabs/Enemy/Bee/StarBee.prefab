@@ -9895,7 +9895,12 @@ MonoBehaviour:
   id: 
   FOV: {fileID: 6599616321637792251}
   Ani: {fileID: 6599616321637792249}
-  hp: 10
+  Stun: 5
+  GetHit: 0
+  StunTime: 5
+  StunTimer: 0
+  BeeATK: {fileID: -6302845047384963425}
+  hp: 20
   enemyDead: 0
 --- !u!114 &6599616321637792251
 MonoBehaviour:
@@ -11112,7 +11117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6002028340790872505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11127,7 +11132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7382768508911459077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5554, z: 0.0432}
+  m_LocalPosition: {x: 0, y: 0.34, z: 0.0432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
