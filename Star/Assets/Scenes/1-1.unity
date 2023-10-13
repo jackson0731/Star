@@ -9260,18 +9260,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7911350577673564029, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: m_Height
-      value: 1.8249341
-      objectReference: {fileID: 0}
-    - target: {fileID: 7911350577673564029, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: m_Center.x
-      value: -7.610792e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7911350577673564029, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: m_Center.y
-      value: 0.89667886
-      objectReference: {fileID: 0}
     - target: {fileID: 8115605887946875644, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -9297,17 +9285,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2083592690}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: playerHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: playerSoundUI
       value: 
       objectReference: {fileID: 1214447628}
-    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8284396943066599947, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Layer
       value: 0

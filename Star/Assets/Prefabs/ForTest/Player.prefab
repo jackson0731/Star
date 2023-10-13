@@ -1249,9 +1249,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.18665247
-  m_Height: 1.8088253
+  m_Height: 1.8249341
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9047333, z: 0.025894374}
+  m_Center: {x: -7.610792e-17, y: 0.89667886, z: 0.025894374}
 --- !u!114 &7004791805759187077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,12 +1289,16 @@ MonoBehaviour:
   speed: 5
   jump: {x: 0, y: 2, z: 0}
   jumpForce: 2
-  isOnGround: 0
   jumpCount: 0
   jumpPress: 0
   hp: 100
   CanAss: 0
   StateSwitch: 0
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  grounded: 0
   StateType: 0
 --- !u!114 &680599469226896375
 MonoBehaviour:

@@ -83,7 +83,6 @@ public class Player : MonoBehaviour
         VCameraSet();
         hpLeft();
         GroundCheck();
-        hpSlider = GameObject.Find("Hp").GetComponent<Slider>();
     }
 
     private void VCameraSet()
@@ -163,6 +162,7 @@ public class Player : MonoBehaviour
 
     private void hpLeft()
     {
+        hpSlider = GameObject.Find("Hp").GetComponent<Slider>();
         hpSlider.value = hp;
         if (hp <= 0)
         {
