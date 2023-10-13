@@ -9277,9 +9277,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: hpUI
+      value: 
+      objectReference: {fileID: 2083592688}
+    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: CanPass
       value: 
       objectReference: {fileID: 962255947}
+    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: skillUI
+      value: 
+      objectReference: {fileID: 1942294800}
+    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: bulletUI
+      value: 
+      objectReference: {fileID: 917132599}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: hpSlider
       value: 
@@ -9288,6 +9300,10 @@ PrefabInstance:
       propertyPath: playerHeight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: playerSoundUI
+      value: 
+      objectReference: {fileID: 1214447628}
     - target: {fileID: 8123819915468519878, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 8

@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
         jumpCount = 2;
         rb = GetComponent<Rigidbody>();
         spawn = GameObject.Find("Spawn");
+        
         currentScene = SceneManager.GetActiveScene().name;
     }
 
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
         VCameraSet();
         hpLeft();
         GroundCheck();
+        hpSlider = GameObject.Find("Hp").GetComponent<Slider>();
     }
 
     private void VCameraSet()

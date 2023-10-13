@@ -30,7 +30,7 @@ public class BulletCount : MonoBehaviour
             bullet = bulletCount;
             bulletCount = 0;
         }
-
+        bulletText = GameObject.Find("BulletText");
         bulletText.GetComponent<Text>().text = bullet + "/" + bulletCount;
     }
 }
