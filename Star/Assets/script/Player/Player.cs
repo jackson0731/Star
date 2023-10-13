@@ -78,11 +78,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        GroundCheck();
         Move();
         Spawn();
         VCameraSet();
         hpLeft();
-        GroundCheck();
+        
     }
 
     private void VCameraSet()
@@ -316,6 +317,29 @@ public class Player : MonoBehaviour
 
             }
 
+            
+        }
+
+        
+        if (other.gameObject.CompareTag("Resource"))
+        {
+            
+            ResPoi RP = other.GetComponent<ResPoi>();
+            
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                
+                RP.Collecting = true;
+                
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                
+                RP.Collecting = false;
+                
+            }
         }
 
         animator.SetBool("Jumping", false);
