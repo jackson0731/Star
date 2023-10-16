@@ -13,7 +13,6 @@ TagManager:
   - Bullet
   - End
   - Computer
-  - Resource
   layers:
   - Default
   - TransparentFX

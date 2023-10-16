@@ -4845,7 +4845,7 @@ Transform:
   - {fileID: 1414441015282436783}
   - {fileID: 5971775568156039074}
   m_Father: {fileID: 6599616321637792248}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0.101, z: 0}
 --- !u!1 &5446759716361041811
 GameObject:
@@ -9669,7 +9669,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6666258332982198021}
   - component: {fileID: 385063878917165620}
-  - component: {fileID: 3658284391881585345}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -9684,13 +9683,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6455444044062612780}
-  m_LocalRotation: {x: 0.31730464, y: -0, z: -0, w: 0.94832367}
-  m_LocalPosition: {x: 0, y: 0.565, z: 0.0432001}
+  m_LocalRotation: {x: 0.31730464, y: 0, z: 0, w: 0.94832367}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6599616321637792248}
-  m_RootOrder: 2
+  m_Father: {fileID: 6002028340790872505}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 21.853, y: 0, z: 0}
 --- !u!108 &385063878917165620
 Light:
@@ -9749,31 +9748,11 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: -321.573}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &3658284391881585345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6455444044062612780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &6599616321514044567
 GameObject:
   m_ObjectHideFlags: 0
@@ -9875,7 +9854,6 @@ Transform:
   m_Children:
   - {fileID: 6599616321782473592}
   - {fileID: 6599616321894691794}
-  - {fileID: 6666258332982198021}
   - {fileID: 6002028340790872505}
   - {fileID: 65345573096863508}
   m_Father: {fileID: 0}
@@ -11157,9 +11135,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.34, z: 0.0432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6666258332982198021}
   m_Father: {fileID: 6599616321637792248}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7868282765775078790
 GameObject:
