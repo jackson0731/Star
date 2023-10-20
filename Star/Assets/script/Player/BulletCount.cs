@@ -10,9 +10,10 @@ public class BulletCount : MonoBehaviour
     public int bullet = 7;
     private int maxBullet = 7;
 
-    void Start()
+    void Awake()
     {
         bulletText = GameObject.Find("BulletText");
+        bulletText.GetComponent<Text>().text = bullet + "/" + bulletCount;
     }
 
     void Update()
