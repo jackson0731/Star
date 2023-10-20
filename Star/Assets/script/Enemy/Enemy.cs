@@ -25,14 +25,6 @@ public class Enemy : MonoBehaviour, IDataPersistence
     public float hp = 10f;
     public bool enemyDead = false;
 
-    private void Awake()
-    {
-        if(id == null)
-        {
-            GenerateGuid();
-        }
-    }
-
     public void LoadData(GameData data)
     {
         data.enemyLeft.TryGetValue(id, out enemyDead);

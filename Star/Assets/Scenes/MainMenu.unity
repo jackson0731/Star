@@ -2085,6 +2085,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5220129039697144911, guid: c16fb0df95d5e014499594b646ca6466, type: 3}
+      propertyPath: initiallizeDataIfNull
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220129039697144911, guid: c16fb0df95d5e014499594b646ca6466, type: 3}
+      propertyPath: disableDataPersistence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220129039697144911, guid: c16fb0df95d5e014499594b646ca6466, type: 3}
+      propertyPath: overrideSelectedProfileId
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16fb0df95d5e014499594b646ca6466, type: 3}
 --- !u!1 &1143602670

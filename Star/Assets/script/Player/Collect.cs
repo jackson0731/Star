@@ -59,4 +59,15 @@ public class Collect : MonoBehaviour
             }
         }
     }
+
+    public void LoadData(GameData data)
+    {
+        data.normalCollected = normalCollected;
+        data.rareCollected = rareCollected;
+    }
+    public void SaveData(GameData data)
+    {
+        normalCollected = data.normalCollected;
+        rareCollected = data.rareCollected;
+    }
 }

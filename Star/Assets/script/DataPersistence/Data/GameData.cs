@@ -8,14 +8,16 @@ public class GameData
     public long lastUpdated;
     public int deathCount;
     public int level;
-    public Vector3 playerPosition;
+    public float normalCollected;
+    public float rareCollected;
     public SerializableDictionary<string, bool> enemyLeft;
 
     public GameData()
     {
         deathCount = 0;
         this.level = 0;
-        playerPosition = Vector3.zero;
+        normalCollected = 0;
+        rareCollected = 0;
         enemyLeft = new SerializableDictionary<string, bool>();
     }
 }
