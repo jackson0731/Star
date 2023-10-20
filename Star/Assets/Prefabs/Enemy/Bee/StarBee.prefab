@@ -9924,8 +9924,8 @@ MonoBehaviour:
   HeadLt: {fileID: 385063878917165620}
   PatrolPoints: []
   PDestination: 0
-  radius: 15
-  angle: 5
+  radius: 10
+  angle: 10
   canSeePlayer: 0
   HasRoll: 0
   lostChase: 1

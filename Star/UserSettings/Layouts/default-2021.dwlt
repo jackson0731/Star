@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 31964
+  controlID: 74
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 31965
+  controlID: 75
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 31222
+  controlID: 76
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 588
     height: 448.8
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 31966
+  controlID: 100
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -321,8 +321,8 @@ MonoBehaviour:
     y: 0
     width: 436.80005
     height: 722.8
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 3840, y: 2160}
+  m_TargetSize: {x: 1920, y: 1080}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -372,16 +372,16 @@ MonoBehaviour:
   m_VSyncEnabled: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 06000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 03000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -1536
-    m_HBaseRangeMax: 1536
-    m_VBaseRangeMin: -864
-    m_VBaseRangeMax: 864
+    m_HBaseRangeMin: -768
+    m_HBaseRangeMax: 768
+    m_VBaseRangeMin: -432
+    m_VBaseRangeMax: 432
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -401,7 +401,7 @@ MonoBehaviour:
       y: 21
       width: 509.19995
       height: 406.8
-    m_Scale: {x: 0.1657552, y: 0.1657552}
+    m_Scale: {x: 0.3315104, y: 0.3315104}
     m_Translation: {x: 254.59998, y: 203.4}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -409,12 +409,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1536
-      y: -1227.1108
-      width: 3072
-      height: 2454.2217
+      x: -768
+      y: -613.5554
+      width: 1536
+      height: 1227.1108
     m_MinimalGUI: 1
-  m_defaultScale: 0.1657552
+  m_defaultScale: 0.3315104
   m_LastWindowPixelSize: {x: 636.49994, y: 534.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -658,9 +658,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.6823413, y: 1.7963946, z: 10.8773155}
+    m_Target: {x: 6.7913303, y: -14.13067, z: -1.2626696}
     speed: 2
-    m_Value: {x: 3.6823413, y: 1.7963946, z: 10.8773155}
+    m_Value: {x: 6.7913303, y: -14.13067, z: -1.2626696}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -707,13 +707,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.027287157, y: 0.02638591, z: -0.0007238988, w: 0.9992931}
+    m_Target: {x: 0.64823157, y: -0.008455753, z: 0.0071931095, w: 0.7613812}
     speed: 2
-    m_Value: {x: 0.027286777, y: 0.026385542, z: -0.00072388875, w: 0.99927914}
+    m_Value: {x: 0.64822227, y: -0.008455632, z: 0.0071930066, w: 0.7613703}
   m_Size:
-    m_Target: 17.201416
+    m_Target: 30.891315
     speed: 2
-    m_Value: 17.201416
+    m_Value: 30.891315
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -970,10 +970,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0673fdff
-      m_LastClickedID: -167162
-      m_ExpandedIDs: ba73fdff2e7cfdffee82fdff1c8efdff58a8fdff4abefdffc2d4fdff44d6fdff02d9fdff52dbfdff64defdffceeafdff14effdff6aeffdff48f3fdff5008feffd017feff4819feff9a6dffff2ef0ffff12fbffffb26f000030710000765e0100729701003899010016a40100
+      scrollPos: {x: 0, y: 40}
+      m_SelectedIDs: dc650000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 16fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1039,22 +1039,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/script/Enemy
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 56
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/script/Enemy
   m_LastFoldersGridSize: 56
   m_LastProjectPath: C:\Users\Jackson\Documents\GitHub\Star\Star
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 43}
-    m_SelectedIDs: da6e0000
-    m_LastClickedID: 28378
-    m_ExpandedIDs: 00000000386d0000dc6e0000267a000000ca9a3b
+    scrollPos: {x: 0, y: 219}
+    m_SelectedIDs: ce650000
+    m_LastClickedID: 26062
+    m_ExpandedIDs: 00000000f06300008c65000090650000b265000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1082,7 +1082,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000386d000000ca9a3b
+    m_ExpandedIDs: 00000000f0630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1169,7 +1169,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -167162
+  m_LastSelectedObjectID: -1438
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
