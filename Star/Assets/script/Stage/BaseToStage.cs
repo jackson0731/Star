@@ -19,11 +19,13 @@ public class BaseToStage : MonoBehaviour
     {
         if (player.GetComponent<Player>().firstToBase)
         {
+            Time.timeScale = 0;
             plotKillStory.SetActive(true);
             if (Input.anyKey)
             {
                 plotKillStory.SetActive(false);
                 player.GetComponent<Player>().firstToBase = false;
+                Time.timeScale = 1;
             }
         }
         else
