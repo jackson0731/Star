@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public float hp = 100;
     public bool CanAss;
     public bool StateSwitch;
+    public bool firstToBase = true;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
