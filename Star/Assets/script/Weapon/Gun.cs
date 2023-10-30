@@ -42,7 +42,7 @@ public class Gun : MonoBehaviour
             CanShoot = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.J))
         {
             ani.SetBool("IsAtk", true);
             noCombo = 1f;

@@ -5421,7 +5421,7 @@ GameObject:
   - component: {fileID: 1103149617}
   - component: {fileID: 1103149616}
   m_Layer: 5
-  m_Name: Weapon
+  m_Name: WeaponUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11022,21 +11022,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7067796149617603109, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
   m_PrefabInstance: {fileID: 8069512437318152453}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6559876848805255528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970008649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426e87f6ebab7b843867b2f68240501a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6599616321637792196, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
-  mainCamera: {fileID: 963194227}
-  spawn: {fileID: 394946014}
 --- !u!1001 &6599616322032323803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12009,6 +11994,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6731143767020536540, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
+      propertyPath: skillUI
+      value: 
+      objectReference: {fileID: 1103149616}
     - target: {fileID: 6781468541812879635, guid: 23daef8622fd8bf41a62b928cb53a24d, type: 3}
       propertyPath: m_Layer
       value: 0

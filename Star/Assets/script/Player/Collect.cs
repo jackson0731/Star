@@ -59,15 +59,22 @@ public class Collect : MonoBehaviour
             }
         }
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && !collecting)
+        {
+            collectText.SetActive(false);
+        }
+    }
 
     public void LoadData(GameData data)
     {
-        data.normalCollected = normalCollected;
-        data.rareCollected = rareCollected;
+        normalCollected = data.normalCollected;
+        rareCollected = data.rareCollected;
     }
     public void SaveData(GameData data)
     {
-        normalCollected = data.normalCollected;
-        rareCollected = data.rareCollected;
+        data.normalCollected = normalCollected;
+        data.rareCollected = rareCollected;
     }
 }

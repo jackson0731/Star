@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     public bool firstToBase = true;
 
     [Header("Ground Check")]
-    [SerializeField] float playerHeight;
+    [SerializeField] public float playerHeight;
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] bool grounded;
 

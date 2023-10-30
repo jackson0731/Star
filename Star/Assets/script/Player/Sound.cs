@@ -31,7 +31,10 @@ public class Sound : MonoBehaviour
         {
              slider = sliderObject.GetComponent<Slider>();
         }
-
+        if(currentSound < 0)
+        {
+            currentSound = 0;
+        }
         UpdateSound();
     }
 

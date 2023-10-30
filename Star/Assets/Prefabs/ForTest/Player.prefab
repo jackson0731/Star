@@ -1176,6 +1176,7 @@ GameObject:
   - component: {fileID: 7020552914107360975}
   - component: {fileID: 6731143767020536540}
   - component: {fileID: 1405776198340687967}
+  - component: {fileID: 5650270799142888064}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1294,6 +1295,7 @@ MonoBehaviour:
   hp: 100
   CanAss: 0
   StateSwitch: 0
+  firstToBase: 1
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -1358,6 +1360,10 @@ MonoBehaviour:
   Weapon:
   - {fileID: 7693424518291164931, guid: 7bf627550dc44c148929d9f93307a582, type: 3}
   - {fileID: 1469537747845409215, guid: b578459503db88648aed33344edd18b7, type: 3}
+  skillUI: {fileID: 0}
+  weaponImages:
+  - {fileID: 2800000, guid: cfdb878787e685e4b8a55d610ce03d76, type: 3}
+  - {fileID: 2800000, guid: dd0b03ec3cd9b8746a1ad7a8eb4575d4, type: 3}
 --- !u!114 &1405776198340687967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,6 +1379,24 @@ MonoBehaviour:
   bulletText: {fileID: 0}
   bulletCount: 21
   bullet: 7
+--- !u!114 &5650270799142888064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593151957414785765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e048460f8f7f2e4aa07f8ccb74028c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeSpeed: 10
+  dodgeDuration: 0.2
+  isWall: 0
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 520
 --- !u!1 &5110871809944454951
 GameObject:
   m_ObjectHideFlags: 0

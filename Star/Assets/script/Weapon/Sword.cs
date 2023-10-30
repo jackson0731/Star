@@ -36,7 +36,7 @@ public class Sword : MonoBehaviour
 
     void Atk()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 0 && attackCD <= 0 || Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 3 && attackCD <= 0)
+        if (Input.GetKeyDown(KeyCode.J) && attackCount == 0 && attackCD <= 0 || Input.GetKeyDown(KeyCode.J) && attackCount == 3 && attackCD <= 0)
         {
             //第一段攻擊
             attackCount =1;
@@ -47,7 +47,7 @@ public class Sword : MonoBehaviour
             ani.SetInteger("Attack", 1);
             ani.SetBool("IsAtk", true);
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 1 && noCombo >= 0)
+        else if (Input.GetKeyDown(KeyCode.J) && attackCount == 1 && noCombo >= 0)
         {
             //第二段攻擊
             attackCount=2;
@@ -55,7 +55,7 @@ public class Sword : MonoBehaviour
 
             ani.SetInteger("Attack", 2);
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && attackCount == 2 && noCombo >= 0)
+        else if (Input.GetKeyDown(KeyCode.J) && attackCount == 2 && noCombo >= 0)
         {
             //第三段攻擊
             attackCD = 1.25f;

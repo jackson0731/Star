@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MonoBehaviours
 {
@@ -18,11 +19,24 @@ namespace MonoBehaviours
         public GameObject CurrentweaponL;
         public GameObject[] Weapon;
 
+        public RawImage skillUI;
+        public Texture[] weaponImages;
+
         void Start()
         {
             CurrentweaponR = null;
             CurrentweaponL = null;
-            overrider.Ani.runtimeAnimatorController = Animators[0] as RuntimeAnimatorController;
+            skillUI = GameObject.Find("WeaponUI").GetComponent<RawImage>();
+
+            //Àq»{ªZ¾¹¬°ºj
+            skillUI.texture = weaponImages[0];
+            overrider.Ani.runtimeAnimatorController = Animators[1] as RuntimeAnimatorController;
+            player.CanAss = false;
+            Destroy(CurrentweaponR);
+            Destroy(CurrentweaponL);
+            CurrentweaponR = Instantiate(Weapon[1], weaponHolderR.transform);
+            CurrentweaponR.transform.localPosition = new Vector3(0.05f, -0.2f, 0.05f);
+            CurrentweaponR.transform.localRotation = Quaternion.Euler(-180f, 4f, 89f);
         }
         void Update()
         {
@@ -47,8 +61,9 @@ namespace MonoBehaviours
                 CurrentweaponL.transform.localRotation = Quaternion.Euler(6f, 2.1f, -177f);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.I) && overrider.Ani.runtimeAnimatorController != Animators[1] as RuntimeAnimatorController)
             {
+                skillUI.texture = weaponImages[0];
                 overrider.Ani.runtimeAnimatorController = Animators[1] as RuntimeAnimatorController;
                 player.CanAss = false;
                 Destroy(CurrentweaponR);
@@ -57,9 +72,9 @@ namespace MonoBehaviours
                 CurrentweaponR.transform.localPosition = new Vector3(0.05f, -0.2f, 0.05f);
                 CurrentweaponR.transform.localRotation = Quaternion.Euler(-180f, 4f, 89f);
             }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            else if (Input.GetKeyDown(KeyCode.I) && overrider.Ani.runtimeAnimatorController != Animators[2] as RuntimeAnimatorController)
             {
+                skillUI.texture = weaponImages[1];
                 overrider.Ani.runtimeAnimatorController = Animators[2] as RuntimeAnimatorController;
                 player.CanAss = true;
 
