@@ -1393,6 +1393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dodgeSpeed: 10
   dodgeDuration: 0.2
+  isDodging: 0
+  Ani: {fileID: 7067796149617603109}
   isWall: 0
   whatIsWall:
     serializedVersion: 2

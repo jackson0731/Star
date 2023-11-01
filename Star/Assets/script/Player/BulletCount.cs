@@ -22,11 +22,11 @@ public class BulletCount : MonoBehaviour
         {
             bulletCount = 0;
         }
-        if (Input.GetKeyDown(KeyCode.F) && bulletCount + bullet >= 7)
+        if (Input.GetKeyDown(KeyCode.R) && bulletCount + bullet >= 7)
         {
             bulletCount -= maxBullet - bullet;
             bullet = maxBullet;
-        }else if(Input.GetKeyDown(KeyCode.F) && bulletCount + bullet < 7 && bulletCount > 0)
+        }else if(Input.GetKeyDown(KeyCode.R) && bulletCount + bullet < 7 && bulletCount > 0)
         {
             bullet = bulletCount;
             bulletCount = 0;

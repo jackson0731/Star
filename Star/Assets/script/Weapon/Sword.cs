@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     public Animator ani;
     public Player Player;
     public AniEvent AE;
+    bool HasReset;
     [SerializeField] private Collider AtkCollider;
 
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class Sword : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J) && attackCount == 0 && attackCD <= 0 || Input.GetKeyDown(KeyCode.J) && attackCount == 3 && attackCD <= 0)
         {
+            HasReset = false;
             //²Ä¤@¬q§ðÀ»
             attackCount =1;
             noCombo = 0.5f;
@@ -61,11 +63,11 @@ public class Sword : MonoBehaviour
             attackCD = 1.25f;
             noCombo = 1.5f;
             attackCount = 3;
-
             ani.SetInteger("Attack", 3);
         }
-        else if (noCombo < 0)
+        else if (noCombo < 0 && !HasReset)
         {
+            HasReset = true;
             attackCount = 0;
             Player.speed = 5f;
             ani.SetInteger("Attack", 0);

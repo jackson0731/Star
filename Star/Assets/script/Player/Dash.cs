@@ -6,8 +6,8 @@ public class Dash : MonoBehaviour
 {
     public float dodgeSpeed = 10f;
     public float dodgeDuration = 0.3f; // 闪避持续时间
-    private bool isDodging = false;
-
+    [SerializeField] private bool isDodging = false;
+    [SerializeField] private Animator Ani;
     public bool isWall;
     public LayerMask whatIsWall;
 
@@ -38,6 +38,7 @@ public class Dash : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
         }
         GetComponent<Player>().speed = dodgeSpeed;
+        Ani.SetTrigger("Dash");
 
         // 等待闪避持续时间
         yield return new WaitForSeconds(dodgeDuration);
