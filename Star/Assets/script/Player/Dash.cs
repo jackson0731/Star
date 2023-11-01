@@ -26,7 +26,7 @@ public class Dash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L) && !isDodging && canDash)
         {
             StartCoroutine(Dodge());
-            t = 3f;
+            t = 2f;
         }
     }
 
@@ -60,8 +60,8 @@ public class Dash : MonoBehaviour
         {
             GetComponent<CapsuleCollider>().enabled = true;
         }
-        isWall = Physics.Raycast(transform.position, Vector3.right, GetComponent<Player>().playerHeight * 0.5f, whatIsWall);
-        isWall = Physics.Raycast(transform.position, Vector3.left, GetComponent<Player>().playerHeight * 0.5f, whatIsWall);
+        isWall = Physics.Raycast(transform.position, transform.forward, GetComponent<Player>().playerHeight * 0.5f, whatIsWall);
+        
     }
     public void CD()
     {

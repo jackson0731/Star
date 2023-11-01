@@ -11379,6 +11379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarBee
       objectReference: {fileID: 0}
+    - target: {fileID: 6599616321637792196, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6599616321637792248, guid: 80ece4dc00b74054dba1493776494fb7, type: 3}
       propertyPath: m_RootOrder
       value: 6

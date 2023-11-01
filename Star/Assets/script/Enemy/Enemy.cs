@@ -46,7 +46,9 @@ public class Enemy : MonoBehaviour, IDataPersistence
     {
         if(hp <= 0)
         {
+
             enemyDead = true;
+            Ani.SetBool("DeadCheck", true);
             if (!PlayDeadAni)
             {
                 PlayDeadAni = true;
