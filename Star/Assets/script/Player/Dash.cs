@@ -10,19 +10,23 @@ public class Dash : MonoBehaviour
     [SerializeField] private Animator Ani;
     public bool isWall;
     public LayerMask whatIsWall;
+    private float t;
+    private bool canDash;
+    private GameObject dashUI;
 
+    private void Start()
+    {
+        dashUI = GameObject.Find("Dash");
+    }
     void Update()
     {
         WallCheck();
+        CD();
         // 检测闪避触发条件
-        if (Input.GetKeyDown(KeyCode.L) && !isDodging)
+        if (Input.GetKeyDown(KeyCode.L) && !isDodging && canDash)
         {
             StartCoroutine(Dodge());
-        }
-
-        if (isWall)
-        {
-            GetComponent<CapsuleCollider>().enabled = true;
+            t = 3f;
         }
     }
 
@@ -52,6 +56,25 @@ public class Dash : MonoBehaviour
 
     public void WallCheck()
     {
+        if (isWall)
+        {
+            GetComponent<CapsuleCollider>().enabled = true;
+        }
         isWall = Physics.Raycast(transform.position, Vector3.right, GetComponent<Player>().playerHeight * 0.5f, whatIsWall);
+        isWall = Physics.Raycast(transform.position, Vector3.left, GetComponent<Player>().playerHeight * 0.5f, whatIsWall);
+    }
+    public void CD()
+    {
+        t -= Time.deltaTime;
+        if(t <= 0)
+        {
+            canDash = true;
+            dashUI.GetComponent<CanvasGroup>().alpha = 1;
+        }
+        else
+        {
+            canDash = false;
+            dashUI.GetComponent<CanvasGroup>().alpha = 0.5f;
+        }
     }
 }
