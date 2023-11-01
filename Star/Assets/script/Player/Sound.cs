@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Sound : MonoBehaviour
 {
-    public Slider slider;
+    public Slider playerSound;
+    public Slider warning;
     public float maxSound = 100f;
 
     public float currentSound;
@@ -26,10 +27,15 @@ public class Sound : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
         GameObject sliderObject = GameObject.Find("Player Sound");
+        GameObject sliderObject2 = GameObject.Find("warning");
         
-        if (slider == null)
+        if (warning == null)
         {
-             slider = sliderObject.GetComponent<Slider>();
+             warning = sliderObject2.GetComponent<Slider>();
+        }
+        if(playerSound == null)
+        {
+            playerSound = sliderObject.GetComponent<Slider>();
         }
         if(currentSound < 0)
         {
@@ -56,6 +62,7 @@ public class Sound : MonoBehaviour
     void UpdateSound()
     {
         float fillAmount = currentSound / maxSound; // ­pºâ¶ñ¥R­È¤ñ¨Ò
-        slider.value = fillAmount;
+        warning.value = fillAmount;
+        playerSound.value = fillAmount;
     }
 }
