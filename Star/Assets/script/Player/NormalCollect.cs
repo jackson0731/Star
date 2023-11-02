@@ -15,6 +15,9 @@ public class NormalCollect : MonoBehaviour
     public float normalCollecting;
     public float normalCollected;
 
+    [SerializeField] GameObject Bot;
+    [SerializeField] GameObject BotModel;
+    [SerializeField] GameObject BotPos;
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -35,7 +38,7 @@ public class NormalCollect : MonoBehaviour
             collecting = false;
             Debug.Log("Collect End");
             time = 0;
-
+            Destroy(Bot);
             normalCollected += normalCollecting;
             normalCollecting = 0;
         }
@@ -50,6 +53,9 @@ public class NormalCollect : MonoBehaviour
             {
                 collectText.SetActive(false);
                 collecting = true;
+                
+                Bot= Instantiate(BotModel, BotPos.transform);
+                
             }
         }
     }

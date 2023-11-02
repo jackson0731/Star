@@ -9740,9 +9740,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -9924,6 +9924,7 @@ MonoBehaviour:
   HeadLt: {fileID: 385063878917165620}
   PatrolPoints: []
   PDestination: 0
+  Eye: {fileID: 7382768508911459077}
   radius: 10
   angle: 10
   canSeePlayer: 0

@@ -1270,6 +1270,7 @@ MonoBehaviour:
   warning: {fileID: 0}
   maxSound: 100
   currentSound: 0
+  enemyWarning: 0
   Soundloss: 3
 --- !u!114 &8123819915468519878
 MonoBehaviour:
@@ -1415,6 +1416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUsingSkill: 0
   skillDuration: 5
+  skillUsingIcon: {fileID: 0}
 --- !u!1 &5110871809944454951
 GameObject:
   m_ObjectHideFlags: 0

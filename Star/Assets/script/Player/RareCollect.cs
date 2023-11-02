@@ -15,6 +15,9 @@ public class RareCollect : MonoBehaviour
     public float rareCollecting;
     public float rareCollected;
 
+    [SerializeField] GameObject Bot;
+    [SerializeField] GameObject BotModel;
+    [SerializeField] GameObject BotPos;
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -38,6 +41,7 @@ public class RareCollect : MonoBehaviour
 
             rareCollected += rareCollecting;
             rareCollecting = 0;
+            Destroy(Bot);
         }
         rareText.GetComponent<Text>().text = "µ}¦³¸ê·½¡G" + (rareCollected + rareCollecting);
     }
@@ -50,6 +54,8 @@ public class RareCollect : MonoBehaviour
             {
                 collectText.SetActive(false);
                 collecting = true;
+
+                Bot = Instantiate(BotModel, BotPos.transform);
             }
         }
     }

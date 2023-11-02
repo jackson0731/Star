@@ -239,10 +239,18 @@ public class Player : MonoBehaviour
                 transform.Translate(climbMovement);
                 other.gameObject.GetComponent<Stair>().StairTD = true;
             }
-            else
+            else if (!grounded)
             {
                 StateType = State.Ladder;
                 other.gameObject.GetComponent<Stair>().StairTD = true;
+                animator.SetFloat("ClimbLadder", 0.5f);
+            }
+            else if (grounded)
+            {
+                StateType = State.CanMove;
+                other.gameObject.GetComponent<Stair>().StairTD = true;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                animator.SetBool("UsingLadder", false);
                 animator.SetFloat("ClimbLadder", 0.5f);
             }
         }

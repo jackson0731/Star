@@ -133,7 +133,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ying_mu
-    second: {fileID: 2100000, guid: 71e2b88a63ff97e419bd888834a39376, type: 2}
+    second: {fileID: 2100000, guid: e695944609ef72e4e99e3bf1f9811d60, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

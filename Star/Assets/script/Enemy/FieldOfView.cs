@@ -12,6 +12,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private Light HeadLt;
     [SerializeField] private Transform[] PatrolPoints;
     [SerializeField] private int PDestination;
+    [SerializeField] private GameObject Eye;
 
     [Header("Value")]
     public float radius;
@@ -65,7 +66,7 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        rangeChecks = Physics.OverlapSphere(Eye.transform.position, radius, targetMask);
 
         if (rangeChecks.Length != 0)
         {
@@ -139,7 +140,10 @@ public class FieldOfView : MonoBehaviour
                     if (StayTimer > 2)
                     {
                         PDestination = 1;
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        Vector3 Direction = PatrolPoints[PDestination].position - transform.position;
+                        Quaternion rotation = Quaternion.LookRotation(Direction);
+                        transform.rotation = rotation;
+                        //transform.rotation = Quaternion.Euler(0, 90, 0);
                         StayTimer = 0;
                     }
                     
@@ -159,7 +163,10 @@ public class FieldOfView : MonoBehaviour
                     if (StayTimer > 2)
                     {
                         PDestination = 0;
-                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        Vector3 Direction = PatrolPoints[PDestination].position - transform.position;
+                        Quaternion rotation = Quaternion.LookRotation(Direction);
+                        transform.rotation = rotation;
+                        //transform.rotation = Quaternion.Euler(0, -90, 0);
                         StayTimer = 0;
                     }
                     
@@ -238,13 +245,19 @@ public class FieldOfView : MonoBehaviour
 
                 if(Vector3.Distance(transform.position, PatrolPoints[0].position) < Vector3.Distance(transform.position, PatrolPoints[1].position))
                 {
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
                     PDestination = 0;
+                    Vector3 Direction = PatrolPoints[PDestination].position - transform.position;
+                    Quaternion rotation = Quaternion.LookRotation(Direction);
+                    transform.rotation = rotation;
+                    
                 }
                 else if((Vector3.Distance(transform.position, PatrolPoints[0].position) > Vector3.Distance(transform.position, PatrolPoints[1].position)))
                 {
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    
                     PDestination = 1;
+                    Vector3 Direction = PatrolPoints[PDestination].position - transform.position;
+                    Quaternion rotation = Quaternion.LookRotation(Direction);
+                    transform.rotation = rotation;
                 }
                 else
                 {
