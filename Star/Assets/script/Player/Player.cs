@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     bool UsingComputer;
     private string currentScene;
     private GameObject VCamera;
-    [SerializeField] private GameObject AssPos;
+    
     public static Player morePlayer { get; private set; }
 
     public State StateType;
@@ -262,7 +262,7 @@ public class Player : MonoBehaviour
                 
                 FOV.BeStab = true;
                 Ene.hp = 0;
-                other.transform.position = AssPos.transform.position;
+                other.transform.position = transform.position;
                 other.transform.rotation = transform.rotation;
                 EnemyAni.SetTrigger("BeAssed");
 

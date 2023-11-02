@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour, IDataPersistence
 
             enemyDead = true;
             Ani.SetBool("DeadCheck", true);
-            if (!PlayDeadAni)
+            if (!PlayDeadAni && !FOV.BeStab)
             {
                 PlayDeadAni = true;
                 Ani.SetTrigger("Dead");
