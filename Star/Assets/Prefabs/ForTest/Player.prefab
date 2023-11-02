@@ -1177,6 +1177,7 @@ GameObject:
   - component: {fileID: 6731143767020536540}
   - component: {fileID: 1405776198340687967}
   - component: {fileID: 5650270799142888064}
+  - component: {fileID: 6662678235486535000}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1265,7 +1266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a744eba515d75994bb2045aaa92a4252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  playerSound: {fileID: 0}
+  warning: {fileID: 0}
   maxSound: 100
   currentSound: 0
   Soundloss: 3
@@ -1399,6 +1401,20 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 520
+--- !u!114 &6662678235486535000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593151957414785765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560459b023925ba47a9b6b9e7d8a42d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsingSkill: 0
+  skillDuration: 5
 --- !u!1 &5110871809944454951
 GameObject:
   m_ObjectHideFlags: 0

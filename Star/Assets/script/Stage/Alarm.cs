@@ -33,7 +33,8 @@ public class Alarm : MonoBehaviour
         {
             if (Sound.Soundloss <= 0)
             {
-                Sound.currentSound -= 5f;
+                Sound.currentSound -= 10f;
+                Sound.enemyWarning -= 5f;
                 
                 Sound.Soundloss = 3f;
             }

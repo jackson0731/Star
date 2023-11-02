@@ -12,6 +12,7 @@ public class Sound : MonoBehaviour
     public float maxSound = 100f;
 
     public float currentSound;
+    public float enemyWarning;
 
     public float Soundloss = 3f;
     
@@ -20,6 +21,7 @@ public class Sound : MonoBehaviour
     void Start()
     {
         currentSound = 0;
+        enemyWarning = 0;
         UpdateSound();
     }
 
@@ -27,7 +29,7 @@ public class Sound : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
         GameObject sliderObject = GameObject.Find("Player Sound");
-        GameObject sliderObject2 = GameObject.Find("warning");
+        GameObject sliderObject2 = GameObject.Find("Warning");
         
         if (warning == null)
         {
@@ -41,7 +43,14 @@ public class Sound : MonoBehaviour
         {
             currentSound = 0;
         }
-        UpdateSound();
+        if(enemyWarning < 0)
+        {
+            enemyWarning = 0;
+        }
+        if (warning != null && playerSound != null)
+        {
+            UpdateSound();
+        }
     }
 
     public void minusSound(float amount)
@@ -55,14 +64,17 @@ public class Sound : MonoBehaviour
     {
         Soundloss = 3f;
         currentSound += amount;
+        enemyWarning += amount;
         currentSound = Mathf.Clamp(currentSound, 0f, maxSound); // 限制能量值在0到最大值之間
+        enemyWarning = Mathf.Clamp(enemyWarning, 0f, maxSound); // 限制能量值在0到最大值之間
         
     }
 
     void UpdateSound()
     {
-        float fillAmount = currentSound / maxSound; // 計算填充值比例
+        float fillAmount = enemyWarning / maxSound; // 計算填充值比例
+        float fillAmount2 = currentSound / maxSound; // 計算填充值比例
         warning.value = fillAmount;
-        playerSound.value = fillAmount;
+        playerSound.value = fillAmount2;
     }
 }

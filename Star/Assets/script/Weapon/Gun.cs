@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     private Sound sound;
+    private DisableSoundSkill skill;
     //[SerializeField] GameObject GunSpot;
     [SerializeField] GameObject bulletPrefab; // 子彈的預製體
     [SerializeField] Transform firePoint; // 子彈發射的起點
@@ -21,6 +22,7 @@ public class Gun : MonoBehaviour
         sound = GameObject.Find("Player").GetComponent<Sound>();
         ani = GameObject.Find("Player").GetComponent<Animator>();
         BC = GameObject.Find("Player").GetComponent<BulletCount>();
+        skill = GameObject.Find("Player").GetComponent<DisableSoundSkill>();
     }
 
     void Update()
@@ -70,9 +72,11 @@ public class Gun : MonoBehaviour
 
             BC.bullet -= 1;
 
-            float amount = 5f;
-            sound.addSound(amount);
+            if (!skill.isUsingSkill)
+            {
+                float amount = 5f;
+                sound.addSound(amount);
+            }
         }
-        
     }
 }
