@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Collect : MonoBehaviour
+public class NormalCollect : MonoBehaviour
 {
     public GameObject player;
     public bool collecting = false;
@@ -11,41 +11,35 @@ public class Collect : MonoBehaviour
     public GameObject collectText;
 
     public GameObject normalText;
-    public GameObject rareText;
+    private float plus; //每10秒加1次
     public float normalCollecting;
-    public float rareCollecting;
     public float normalCollected;
-    public float rareCollected;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
         collectText.SetActive(false);
         normalText = GameObject.Find("Normal");
-        rareText = GameObject.Find("Rare");
 
     }
     void Update()
     {
+        plus = time / 10;
         if (collecting)
         {
             time += Time.deltaTime;
-            normalCollecting = Mathf.Floor(time);
-            rareCollecting = Mathf.Floor(Mathf.Floor(time) / 2);
+            normalCollecting = Mathf.Floor(plus)*10;
         }
-        if(Mathf.Floor(time) >= 120)
+        if(Mathf.Floor(time) >= 100)
         {
             collecting = false;
             Debug.Log("Collect End");
             time = 0;
 
             normalCollected += normalCollecting;
-            rareCollected += rareCollecting;
             normalCollecting = 0;
-            rareCollecting = 0;
         }
         normalText.GetComponent<Text>().text = "普通資源：" + (normalCollected + normalCollecting);
-        rareText.GetComponent<Text>().text = "稀有資源：" + (rareCollected + rareCollecting);
     }
     void OnTriggerStay(Collider other)
     {
@@ -70,11 +64,9 @@ public class Collect : MonoBehaviour
     public void LoadData(GameData data)
     {
         normalCollected = data.normalCollected;
-        rareCollected = data.rareCollected;
     }
     public void SaveData(GameData data)
     {
         data.normalCollected = normalCollected;
-        data.rareCollected = rareCollected;
     }
 }
