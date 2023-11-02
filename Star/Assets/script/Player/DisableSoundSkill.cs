@@ -14,6 +14,7 @@ public class DisableSoundSkill : MonoBehaviour
     private void Start()
     {
         skillUI = GameObject.Find("SkillUI");
+        skillUsingIcon = GameObject.Find("skillUsingIcon");
         skillUsingIcon.SetActive(false);
     }
     void Update()
